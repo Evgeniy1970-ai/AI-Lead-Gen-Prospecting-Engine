@@ -1,0 +1,687 @@
+{
+      "name": "Lead Generation Suite - Agent 3 — Proposal Generator_v2",
+      "nodes": [
+        {
+          "parameters": {
+            "content": "## Lead Generation Suite - Agent 3 — Proposal Generator_v2\n\n### How it works\n\n1. The workflow is triggered when executed by Agent 1.\n2. Checks for any existing proposals for the lead in the database.\n3. Determines if a proposal has already been sent using suppression list and branching logic.\n4. If a proposal hasn't been sent, generates a proposal and updates records.\n5. Stores the new proposal in Supabase and updates lead status.\n6. Sends notifications for both proposal readiness and rejections via Telegram.\n\n### Setup steps\n\n- [ ] Set up OpenAI API credentials for generating proposals.\n- [ ] Configure Supabase credentials for database operations.\n- [ ] Establish Telegram bot credentials for sending notifications.\n\n### Customization\n\nYou can adjust proposal generation parameters in the 'Generate Proposal' node to fit different lead criteria.",
+            "width": 480,
+            "height": 832
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -784,
+            -416
+          ],
+          "id": "1a9e9e74-97ad-48f8-a20f-7a9a3548fe00",
+          "name": "Sticky Note"
+        },
+        {
+          "parameters": {
+            "content": "## Trigger and check suppression\n\nTriggers workflow execution and checks suppression list for existing proposals.",
+            "width": 1088,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -224,
+            -176
+          ],
+          "id": "8545d2d0-54d8-489e-bd23-c5aaae80cdbe",
+          "name": "Sticky Note1"
+        },
+        {
+          "parameters": {
+            "content": "## Handle proposal status\n\nSends Telegram notifications based on whether a proposal has already been sent or suppressed.",
+            "width": 240,
+            "height": 528,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            960,
+            -416
+          ],
+          "id": "8aae8045-10f8-4a65-a260-5de4408a1652",
+          "name": "Sticky Note2"
+        },
+        {
+          "parameters": {
+            "content": "## Generate and prepare proposal\n\nGenerates a new proposal and prepares the record for saving.",
+            "width": 544,
+            "height": 272,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            896,
+            144
+          ],
+          "id": "e993f810-043a-4e28-835f-6f224216f901",
+          "name": "Sticky Note3"
+        },
+        {
+          "parameters": {
+            "content": "## Save and update proposal status\n\nSaves the proposal to Supabase and updates the lead's status.",
+            "width": 400,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            1472,
+            16
+          ],
+          "id": "6b5985dd-5be2-43c3-8be5-59f24df390b4",
+          "name": "Sticky Note4"
+        },
+        {
+          "parameters": {
+            "content": "## Notify proposal approval\n\nNotifies users via Telegram about the proposal approval status.",
+            "width": 240,
+            "height": 352,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            1904,
+            -48
+          ],
+          "id": "88227bbd-608a-44c2-81c2-b4228d59e408",
+          "name": "Sticky Note5"
+        },
+        {
+          "parameters": {
+            "modelId": {
+              "__rl": true,
+              "value": "gpt-4o",
+              "mode": "list",
+              "cachedResultName": "GPT-4O"
+            },
+            "responses": {
+              "values": [
+                {
+                  "role": "system",
+                  "content": "=You are a senior outreach copywriter for NeolithAI Agency, a boutique AI automation studio.\n\n### ABOUT NEOLITHAI\nPositioning: NeolithAI doesn't automate for its own sake — it targets one specific\nbottleneck in a business and removes it. Live production stack: n8n, GPT-4o, Claude,\nSupabase. 5+ live deployments, ~60% average time savings for clients.\n\nCore services:\n1. AI Agent Design — autonomous agents that complete multi-step tasks without a human in the loop\n2. Workflow Automation — end-to-end n8n pipelines tailored to a specific business\n3. RAG & Knowledge Bases — AI that works over a company's private data via vector search\n\nRelevant case studies (use AT MOST one, and only if it is a genuinely close match to\nthis lead's specific pain point — same type of operational problem, not just \"AI\nautomation\" in general. If none of them fit well, omit case studies entirely rather\nthan forcing a weak comparison. A forced or vague analogy is worse than no case study\nat all):\n- AI Lead Generation Agent: fully autonomous B2B outreach — sourcing, scoring, personalized email + follow-up, zero manual work\n- Restaurant AI Suite: 5 agents in one system — review monitoring, booking reminders that cut no-shows, weather-based menu suggestions, inventory tracking, automated dish photography\n- CV Screening Agent: shortlists candidates 10x faster with a full audit trail of every decision\n- BFS Suite: 3 RAG agents (Legal/HR/Support) with human escalation and a live dashboard\n- AI Content Master: generates 9 pieces of content in 3 languages from a single request\n\nFounder: Yevhenii Nokhin, a PhD archaeologist with 23 years mapping and analyzing complex\nsystems on excavation sites, now applies the same discipline to automation — map the\nprocess, find the gaps, build a system that runs itself. Use this once, sparingly, only\nif it fits naturally. Do not force it.\n\nClient testimonials (paraphrase, never quote verbatim): a UK tech startup COO saved 3\nfull working days a month; a Poland-based SaaS Head of Support reduced team workload\nwhile handling the same ticket volume.\n\n### YOUR TASK\nWrite a short, personalized first-touch email to open a conversation — NOT a sales\npitch, NOT a full commercial proposal. No prices. No attachments or PDF mentions.\n\n### STRUCTURE — write the body in exactly this order\n1. Greeting: \"Hi {company_name} team,\" on its own line, then a blank line.\n2. Hook sentence (max 20 words): one specific, factual, non-problem detail about\n   this business — see CONTENT RULES for what counts as valid.\n3. Pain point sentence: one specific operational problem — see CONTENT RULES.\n4. Solution sentence(s): how NeolithAI addresses that specific problem. Include a\n   case study reference only if genuinely analogous (see ABOUT NEOLITHAI).\n5. CTA: ask for a brief 20-30 minute call, mention flexibility on timing.\n6. Sign-off block (fixed text, see CONTENT RULES item 6).\n\n### CONTENT RULES\n1. Hook sentence source: pull the detail ONLY from fields explicitly present in the\n   dossier (company_name, google_rating, review_count, review_patterns, content,\n   social_signals). Do not mention or imply the operational problem in this\n   sentence — that belongs only in the pain point sentence. Do not open with\n   \"I noticed\" or \"I saw.\" Do not use generic compliments (\"I love your\n   restaurant,\" \"Great business you have\").\n2. Factual accuracy is mandatory. Never state or imply a business type, cuisine,\n   specialty, or attribute (e.g. \"steakhouse,\" \"fine dining,\" \"family-owned\")\n   unless that exact word or an unambiguous synonym appears in the dossier text.\n   If the dossier doesn't state the business type, use the neutral word\n   \"restaurant\" or \"business.\" Do not rely on what the business name might\n   suggest (e.g. a Spanish/Argentine-sounding name does not imply any specific\n   cuisine) — only dossier text counts as fact.\n3. Pain point sentence: state ONE specific operational problem drawn from\n   \"pain_points\" or \"automation_gaps.\" Describe it in your own English words\n   (translate if dossier evidence is non-English) — do not quote foreign text.\n   Be concrete: name the actual process (e.g. \"reservations over 9 guests require\n   a manual email,\" not \"your processes could be optimized\"). If no specific pain\n   point exists in the dossier, output exactly \"NO_SPECIFIC_PAIN_POINT\" as both\n   subject and body — do not invent one.\n4. If site_confidence or review_confidence is \"low,\" treat related claims as\n   tentative, not certain fact.\n5. Tone: professional, direct, plain English. No clichés (\"I hope this finds you\n   well,\" \"I came across your business\").\n6. Sign-off (verbatim, always): \"Best regards,\\nYevhenii, NeolithAI\\n\\nNeolithAI\n   Agency | Kraków, Poland\\nNot interested? Just reply 'unsubscribe' and you\n   won't hear from us again.\" Never use bracketed placeholders. Never guess a\n   contact person's name.\n7. Language: the entire output (subject + body) must be 100% English. No words,\n   spelling, or phrases from the lead's local language or regional cuisine terms —\n   not even one word.\n\n### PROHIBITED WORDS AND PHRASES\nDo not use any of these words in any grammatical form (including plurals, -ing,\n-ed, or other variants). For each, use the plain alternative shown instead:\n- \"optimize/optimizing/optimized\" → say what specifically improves (e.g. \"cut\n  response time\")\n- \"streamline/streamlining/streamlined\" → say the concrete mechanism (e.g.\n  \"automatically confirm bookings\")\n- \"seamless/seamlessly\" → say the specific outcome (e.g. \"without double-booking,\"\n  \"without manual re-entry\")\n- \"bottleneck\" → name the actual step that's slow or manual\n- \"tailored/tailoring\" → say what specifically is customized\n- \"targeted challenges\" / \"specific challenges your team is facing\" → name the\n  actual problem directly\nUsing any of the words above in any form is a failure, even if the surrounding\nsentence is otherwise good. Before finalizing, scan your draft for each of these\nwords specifically.\n### LENGTH — hard requirement\nThe full body (greeting through sign-off, inclusive) must be 100-150 words. Before\noutputting, count the words. If the count is under 100, add one more concrete detail\nabout the automation benefit or case study before the CTA. If over 150, cut the\nleast essential sentence. Do not output until the count is within range.\n\n### FINAL SELF-CHECK (perform silently before writing the JSON output)\n- Does the hook sentence contain ONLY facts explicitly present in the dossier?\n- Does the hook sentence avoid stating or implying the business type/cuisine unless\n  the dossier says so directly?\n- Is the pain point specific and traceable to a dossier field?\n- Does the output contain zero prohibited words in any form?\n- Is the body word count between 100 and 150?\n- Does the structure follow the exact order above?\nIf any check fails, revise before outputting.\n\n### OUTPUT FORMAT (JSON only, no markdown, no code fences)\n{\n  \"subject\": \"\",\n  \"body\": \"\"\n}"
+                },
+                {
+                  "content": "=### LEAD DOSSIER\nCompany: {{ $json.company_name }}\nWebsite: {{ $json.website }}\nGoogle rating: {{ $json.google_rating }} ({{ $json.review_count }} reviews)\nSite content summary: {{ $json.content }}\nPain points identified: {{ $json.pain_points }}\nAutomation gaps identified: {{ $json.automation_gaps }}\nReview patterns: {{ $json.review_patterns }}\nSocial signals: {{ $json.social_signals }}\nSite confidence: {{ $json.site_confidence }}, Review confidence: {{ $json.review_confidence }}"
+                }
+              ]
+            },
+            "simplify": false,
+            "builtInTools": {},
+            "options": {
+              "textFormat": {
+                "textOptions": {
+                  "type": "json_object"
+                }
+              }
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.openAi",
+          "typeVersion": 2.1,
+          "position": [
+            944,
+            256
+          ],
+          "id": "185012b4-346d-4910-b5e0-13c86898c216",
+          "name": "OpenAI Proposal Generator",
+          "credentials": {
+            "openAiApi": {
+              "id": "YOUR_OPENAI_CREDENTIAL_ID",
+              "name": "OpenAi account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "// Generate Proposal (OpenAI node) does not pass through input fields,\n// so lead_id/research_id/chat_id/company_name/email are read explicitly\n// from the trigger — same pattern used throughout Agent 2.\nconst trigger = $('Execution Trigger by Agent 1').item.json;\nconst proposal = $json.output[0].content[0].text;\n\nconst telegramMessage = `📄 Proposal ready for ${trigger.company_name}\n\n━━━━━━━━━━━━━━━\n\nSubject: ${proposal.subject}\n\n${proposal.body}\n\n━━━━━━━━━━━━━━━\n\nRecipient: ${trigger.email}`;\n\nreturn {\n  lead_id:          trigger.lead_id,\n  research_id:      trigger.research_id,\n  chat_id:          trigger.chat_id,\n  company_name:     trigger.company_name,\n  email:            trigger.email,\n  subject:          proposal.subject,\n  body:             proposal.body,\n  kp_text:          `Subject: ${proposal.subject}\\n\\n${proposal.body}`,\n  telegram_message: telegramMessage\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1296,
+            256
+          ],
+          "id": "a49dc5ca-95ca-438c-acd1-9f926779ea50",
+          "name": "Build Proposal Records"
+        },
+        {
+          "parameters": {
+            "workflowInputs": {
+              "values": [
+                {
+                  "name": "lead_id"
+                },
+                {
+                  "name": "research_id"
+                },
+                {
+                  "name": "chat_id"
+                },
+                {
+                  "name": "company_name"
+                },
+                {
+                  "name": "website"
+                },
+                {
+                  "name": "email"
+                },
+                {
+                  "name": "content"
+                },
+                {
+                  "name": "pain_points"
+                },
+                {
+                  "name": "automation_gaps"
+                },
+                {
+                  "name": "review_patterns"
+                },
+                {
+                  "name": "social_signals"
+                },
+                {
+                  "name": "google_rating",
+                  "type": "number"
+                },
+                {
+                  "name": "review_count",
+                  "type": "number"
+                },
+                {
+                  "name": "site_confidence"
+                },
+                {
+                  "name": "review_confidence"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.1,
+          "position": [
+            -176,
+            -48
+          ],
+          "id": "b14b565c-3642-401e-9554-2c686442d8f1",
+          "name": "Execution Trigger by Agent 1"
+        },
+        {
+          "parameters": {
+            "tableId": "proposals",
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "lead_id",
+                  "fieldValue": "={{ $json.lead_id }}"
+                },
+                {
+                  "fieldId": "research_id",
+                  "fieldValue": "={{ $json.research_id }}"
+                },
+                {
+                  "fieldId": "kp_text",
+                  "fieldValue": "={{ $json.kp_text }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            1520,
+            144
+          ],
+          "id": "64da0f4e-faba-442d-a50e-77a2c137222b",
+          "name": "Store Proposal in Supabase",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Build Proposal Records').item.json.chat_id }}",
+            "text": "={{ $('Build Proposal Records').item.json.telegram_message }}",
+            "replyMarkup": "inlineKeyboard",
+            "inlineKeyboard": {
+              "rows": [
+                {
+                  "row": {
+                    "buttons": [
+                      {
+                        "text": "Send to Gmail",
+                        "additionalFields": {
+                          "callback_data": "={{ 'send_' + $json.id }}"
+                        }
+                      },
+                      {
+                        "text": "Discard",
+                        "additionalFields": {
+                          "callback_data": "={{ 'discard_' + $json.id }}"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            1952,
+            144
+          ],
+          "id": "a6e7738e-4297-4fc5-8a06-9bcfce0d2a24",
+          "name": "Notify Proposal Approval in Telegram",
+          "webhookId": "7b36c6a4-c0a5-449d-956f-8537645f054b",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "operation": "getAll",
+            "tableId": "suppression_list",
+            "returnAll": true
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            272,
+            -48
+          ],
+          "id": "b1982e92-e0ed-4fdf-9b17-bbad17e5ab25",
+          "name": "Fetch Suppression List from Supabase",
+          "executeOnce": true,
+          "retryOnFail": true,
+          "alwaysOutputData": true,
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $json.chat_id }}",
+            "text": "=🚫 Proposal blocked — lead is in suppression list.  🏢 {{ $json.company_name }} 📧 {{ $json.email }} ⚠️ {{ $json.suppress_reason }}  No proposal was generated. No credits spent.",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            1008,
+            -48
+          ],
+          "id": "7c103677-5bcc-4077-ad45-ed6b591b76dd",
+          "name": "Send Suppression Notice on Telegram",
+          "webhookId": "a5d03ef0-bbc6-4ab5-8900-2f4b4b2beb70",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "rules": {
+              "values": [
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "loose",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "leftValue": "={{ $json.already_sent }}",
+                        "rightValue": "sent",
+                        "operator": {
+                          "type": "boolean",
+                          "operation": "true",
+                          "singleValue": true
+                        },
+                        "id": "3592bbfd-ddee-4643-bc90-d9b68159f6c3"
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "yes"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "loose",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "4d8d9588-4941-419e-9a84-317dc1952c03",
+                        "leftValue": "={{ $json.is_suppressed }}",
+                        "rightValue": "",
+                        "operator": {
+                          "type": "boolean",
+                          "operation": "true",
+                          "singleValue": true
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "suppressed"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "loose",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "80784f45-6860-4855-bcd7-b650f43729b9",
+                        "leftValue": "={{ $json.already_sent }}",
+                        "rightValue": "",
+                        "operator": {
+                          "type": "boolean",
+                          "operation": "false",
+                          "singleValue": true
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "no"
+                }
+              ]
+            },
+            "looseTypeValidation": true,
+            "options": {}
+          },
+          "type": "n8n-nodes-base.switch",
+          "typeVersion": 3.4,
+          "position": [
+            720,
+            -64
+          ],
+          "id": "49f61837-d4db-42a6-ae68-283f6125cf14",
+          "name": "Route by Proposal Sent Status"
+        },
+        {
+          "parameters": {
+            "operation": "getAll",
+            "tableId": "proposals",
+            "returnAll": true
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            48,
+            -48
+          ],
+          "id": "544186d7-2d29-4dd0-9e26-9522757c859b",
+          "name": "Query Existing Proposals in Supabase",
+          "alwaysOutputData": true,
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "jsCode": "const trigger = $('Execution Trigger by Agent 1').item.json;\nconst proposals = $('Query Existing Proposals in Supabase').all().map(i => i.json);\nconst suppressions = $('Fetch Suppression List from Supabase').all().map(i => i.json);\n\nconst alreadySent = proposals.some(r => r.lead_id === trigger.lead_id && r.status === 'sent');\n\nconst leadEmail = (trigger.email || '').toLowerCase().trim();\nconst leadDomain = leadEmail.includes('@') ? leadEmail.split('@')[1] : '';\nlet suppressed = false;\nlet suppressReason = '';\n\nfor (const entry of suppressions) {\n  const sEmail = (entry.email || '').toLowerCase().trim();\n  const sDomain = (entry.domain || '').toLowerCase().trim();\n  if (sEmail && sEmail === leadEmail) {\n    suppressed = true;\n    suppressReason = 'email match: ' + entry.reason;\n    break;\n  }\n  if (sDomain && sDomain === leadDomain) {\n    suppressed = true;\n    suppressReason = 'domain match: ' + entry.reason;\n    break;\n  }\n}\n\nreturn [{ json: { ...trigger, already_sent: alreadySent, is_suppressed: suppressed, suppress_reason: suppressReason } }];"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            496,
+            -48
+          ],
+          "id": "10f50cfe-237a-498f-b675-bb1d4d042600",
+          "name": "Execute Already Sent Validation"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $json.chat_id }}",
+            "text": "=⚠️ Proposal already sent for {{ $json.company_name }}. Skipping to avoid duplicate outreach.",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            1008,
+            -240
+          ],
+          "id": "a3086a87-7779-48cc-854e-11d664bbb44a",
+          "name": "Inform Proposal Already Sent on Telegram",
+          "webhookId": "5851ff2e-920e-476f-a910-eb102afc4ffa",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "operation": "update",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "condition": "eq",
+                  "keyValue": "={{ $('Execution Trigger by Agent 1').item.json.lead_id }}"
+                }
+              ]
+            },
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "status",
+                  "fieldValue": "proposal_ready"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            1728,
+            144
+          ],
+          "id": "0f7af1dc-d639-4413-b094-a7bfae5d2a26",
+          "name": "Update Lead Status in Supabase",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        }
+      ],
+      "pinData": {
+        "Execution Trigger by Agent 1": [
+          {
+            "json": {
+              "lead_id": "00000000-0000-0000-0000-000000000001",
+              "research_id": "00000000-0000-0000-0000-000000000002",
+              "chat_id": "YOUR_TELEGRAM_CHAT_ID",
+              "company_name": "Example Restaurant",
+              "website": "http://www.example-restaurant.com/",
+              "email": "info@example-restaurant.com",
+              "content": "[Pinned test data — replace with your own lead before testing]"
+            },
+            "pairedItem": {
+              "item": 0
+            }
+          }
+        ]
+      },
+      "connections": {
+        "OpenAI Proposal Generator": {
+          "main": [
+            [
+              {
+                "node": "Build Proposal Records",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Execution Trigger by Agent 1": {
+          "main": [
+            [
+              {
+                "node": "Query Existing Proposals in Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Build Proposal Records": {
+          "main": [
+            [
+              {
+                "node": "Store Proposal in Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Store Proposal in Supabase": {
+          "main": [
+            [
+              {
+                "node": "Update Lead Status in Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fetch Suppression List from Supabase": {
+          "main": [
+            [
+              {
+                "node": "Execute Already Sent Validation",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Route by Proposal Sent Status": {
+          "main": [
+            [
+              {
+                "node": "Inform Proposal Already Sent on Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Send Suppression Notice on Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "OpenAI Proposal Generator",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Query Existing Proposals in Supabase": {
+          "main": [
+            [
+              {
+                "node": "Fetch Suppression List from Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Execute Already Sent Validation": {
+          "main": [
+            [
+              {
+                "node": "Route by Proposal Sent Status",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Update Lead Status in Supabase": {
+          "main": [
+            [
+              {
+                "node": "Notify Proposal Approval in Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "active": true,
+      "settings": {
+        "executionOrder": "v1",
+        "binaryMode": "separate",
+        "availableInMCP": false
+      },
+      "versionId": "55165034-a856-48c6-aafe-11afae3985a0",
+      "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "b8dc6b20db443e18892a3a7897076c0d1944dd1743dde315e88e0ce0d3ed7ca6"
+      },
+      "id": "YOUR_WORKFLOW_ID",
+      "tags": []
+    }

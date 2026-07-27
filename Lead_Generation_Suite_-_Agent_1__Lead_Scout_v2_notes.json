@@ -1,0 +1,2925 @@
+{
+      "name": "Lead Generation Suite - Agent 1: Lead Scout v2",
+      "nodes": [
+        {
+          "parameters": {
+            "content": "## Lead Generation Suite - Agent 1: Lead Scout v2\n\n### How it works\n\n1. Triggers on a Telegram message input.\n2. Validates and routes input for processing.\n3. Extracts, geocodes, and filters location data.\n4. Searches for and validates leads using various APIs.\n5. Assembles and scores leads, then stores them.\n\n### Setup steps\n\n- [ ] Set up Telegram credentials for the trigger node.\n- [ ] Configure OpenAI and Google Maps API keys.\n- [ ] Set up Supabase connections where needed.\n\n### Customization\n\nAdjust the country filter and scoring system in the relevant nodes to meet your specific criteria.",
+            "width": 480,
+            "height": 896
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -2816,
+            -1024
+          ],
+          "id": "c3bf235f-956b-4a96-a809-75e1aed54952",
+          "name": "Sticky Note"
+        },
+        {
+          "parameters": {
+            "content": "## Telegram input trigger\n\nStarts the workflow on Telegram message receipt.",
+            "width": 240,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -2256,
+            -32
+          ],
+          "id": "1faa47f2-b9b0-476b-890b-73479b874c8f",
+          "name": "Sticky Note1"
+        },
+        {
+          "parameters": {
+            "content": "## Input validation and routing\n\nValidates the input and routes it based on type.",
+            "width": 416,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -1984,
+            -32
+          ],
+          "id": "cce009ca-acf5-4381-b88f-022df9dae673",
+          "name": "Sticky Note2"
+        },
+        {
+          "parameters": {
+            "content": "## Callback parsing\n\nHandles callback parsing and action routing.",
+            "width": 480,
+            "height": 400,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -1520,
+            -368
+          ],
+          "id": "02d0c51b-5692-4a30-8edb-c3f37ebd52ce",
+          "name": "Sticky Note3"
+        },
+        {
+          "parameters": {
+            "content": "## Location extraction and geocoding\n\nExtracts and processes location data for lead search.",
+            "width": 1440,
+            "height": 272,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -1584,
+            656
+          ],
+          "id": "16b202fd-3202-4c80-8453-9c339f90e902",
+          "name": "Sticky Note4"
+        },
+        {
+          "parameters": {
+            "content": "## Country filtering and deduplication\n\nApplies country restrictions and removes duplicate entries.",
+            "width": 640,
+            "height": 592,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -112,
+            336
+          ],
+          "id": "7ae41f83-93cc-4379-90e5-699dba43e855",
+          "name": "Sticky Note5"
+        },
+        {
+          "parameters": {
+            "content": "## Known IDs processing\n\nChecks, waits, and processes known place IDs.",
+            "width": 240,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            560,
+            736
+          ],
+          "id": "9803fa84-18a5-41ab-ad87-f43f8ee76016",
+          "name": "Sticky Note6"
+        },
+        {
+          "parameters": {
+            "content": "## Serper searches\n\nConducts email and LinkedIn searches using Serper.",
+            "width": 864,
+            "height": 1136,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            1232,
+            -32
+          ],
+          "id": "2bf1466b-db9e-4d21-9b7f-c7d1925a9030",
+          "name": "Sticky Note7"
+        },
+        {
+          "parameters": {
+            "content": "## Email detection and verification\n\nChecks and verifies if email found, with follow-up actions.",
+            "width": 1088,
+            "height": 416,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            2128,
+            352
+          ],
+          "id": "7279a136-b006-4a07-9b45-7477f3b49f9c",
+          "name": "Sticky Note8"
+        },
+        {
+          "parameters": {
+            "content": "## Lead assembly and scoring\n\nAssembles leads and assigns scores before storing.",
+            "width": 1312,
+            "height": 272,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            3248,
+            496
+          ],
+          "id": "63e1804e-aee1-4c11-83a5-ae168288df22",
+          "name": "Sticky Note9"
+        },
+        {
+          "parameters": {
+            "content": "## Data insertion and alerts\n\nInserts leads to Supabase and sends Telegram alerts based on switch conditions.",
+            "width": 864,
+            "height": 640,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            4592,
+            224
+          ],
+          "id": "bbb81727-b0e2-453e-a925-716768d5c8a2",
+          "name": "Sticky Note10"
+        },
+        {
+          "parameters": {
+            "content": "## Duplicate counting\n\nLogs duplicates found in Telegram.",
+            "width": 1088,
+            "height": 288,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            832,
+            1136
+          ],
+          "id": "7f4d5382-31f4-4ffb-87a7-7f378e41e8db",
+          "name": "Sticky Note11"
+        },
+        {
+          "parameters": {
+            "content": "## Supabase action routing\n\nRoutes actions based on input and interacts with Supabase.",
+            "width": 1312,
+            "height": 1328,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -1008,
+            -1024
+          ],
+          "id": "43f7bb1e-6f30-4704-a71e-0738bddf8d28",
+          "name": "Sticky Note12"
+        },
+        {
+          "parameters": {
+            "updates": [
+              "message",
+              "callback_query"
+            ],
+            "additionalFields": {}
+          },
+          "name": "When Message From Telegram",
+          "type": "n8n-nodes-base.telegramTrigger",
+          "typeVersion": 1,
+          "position": [
+            -2208,
+            96
+          ],
+          "id": "6b57c9d8-55f9-49a0-a5f4-f4115c847971",
+          "webhookId": "c254a470-38d3-4cba-b2d2-ea22f911ff1a",
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "jsCode": "const input = $input.first().json;\n\n// Determine update type\nconst isCallback = !!input.callback_query;\nconst isMessage  = !!input.message;\n\nif (!isCallback && !isMessage) {\n  throw new Error('SKIP: unknown update type');\n}\n\n// --- CALLBACK QUERY (research / skip / approve / reject / send / discard buttons) ---\nif (isCallback) {\n  const cb = input.callback_query;\n  const ALLOWED_CHAT_IDS = [YOUR_TELEGRAM_CHAT_ID];\n\n  if (!ALLOWED_CHAT_IDS.includes(cb.message.chat.id)) {\n    throw new Error('SKIP: unauthorized chat_id ' + cb.message.chat.id);\n  }\n\n  // Map of known callback_data prefixes to their action name.\n  // Add new buttons here in the future — no other code needs to change.\n  const ACTION_PREFIXES = {\n    'research_': 'research',\n    'skip_':     'skip',\n    'approve_':  'approve',\n    'reject_':   'reject',\n    'send_':     'send',\n    'discard_':  'discard'\n  };\n\n  const matchedPrefix = Object.keys(ACTION_PREFIXES).find(prefix => cb.data.startsWith(prefix));\n\n  if (!matchedPrefix) {\n    throw new Error('SKIP: unknown callback data');\n  }\n\n  return [{\n    json: {\n      update_type:   'callback',\n      callback_id:   cb.id,\n      callback_data: cb.data,\n      lead_id:       cb.data.slice(matchedPrefix.length),\n      action:        ACTION_PREFIXES[matchedPrefix],\n      chat_id:       cb.message.chat.id,\n      message_id:    cb.message.message_id\n    }\n  }];\n}\n\n// --- TEXT MESSAGE (search query) ---\nconst msg = input.message;\nif (!msg?.text) throw new Error('SKIP: not a text message');\n\nconst text = msg.text.trim();\nif (text.length < 5) throw new Error('SKIP: message too short');\n\nconst ALLOWED_CHAT_IDS = [YOUR_TELEGRAM_CHAT_ID];\nif (!ALLOWED_CHAT_IDS.includes(msg.chat.id)) {\n  throw new Error('SKIP: unauthorized chat_id ' + msg.chat.id);\n}\n\nconst SKIP_COMMANDS = ['/start', '/help', '/status', '/stop'];\nif (SKIP_COMMANDS.includes(text.toLowerCase())) {\n  throw new Error('SKIP: command, not a search query');\n}\n\nreturn [{\n  json: {\n    update_type:  'message',\n    raw_query:    text,\n    chat_id:      msg.chat.id,\n    triggered_at: new Date().toISOString()\n  }\n}];"
+          },
+          "name": "Validate Telegram Input",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -1936,
+            96
+          ],
+          "id": "67c9fb93-77f5-429b-99cb-f5d0390900d3",
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "modelId": {
+              "__rl": true,
+              "value": "gpt-4o-mini",
+              "mode": ""
+            },
+            "messages": {
+              "values": [
+                {
+                  "content": "You extract structured search parameters from a user query. Return ONLY valid JSON, no markdown.",
+                  "role": "system"
+                },
+                {
+                  "content": "=Extract from this query: \"{{ $json.raw_query }}\"\n\nReturn JSON:\n{\n  \"business_type\": \"the type of business (e.g. restaurants, beauty salons, dental clinics)\",\n  \"district\": \"specific neighborhood/district name if explicitly mentioned in the query (e.g. 'De Pijp', 'Ruzafa'), otherwise empty string\",\n  \"city\": \"city name in English\",\n  \"country\": \"country name in English\",\n  \"country_code\": \"ISO 3166-1 alpha-2 country code (e.g. NL, IE, ES, GB)\",\n  \"search_query\": \"optimized Google Maps search string (business_type + district if present + city + country)\"\n}"
+                }
+              ]
+            },
+            "simplify": false,
+            "options": {}
+          },
+          "name": "OpenAI Extract Location",
+          "type": "@n8n/n8n-nodes-langchain.openAi",
+          "typeVersion": 1.8,
+          "position": [
+            -1536,
+            768
+          ],
+          "id": "10a450fe-69df-4883-b226-dc94ecdf4fb4",
+          "credentials": {
+            "openAiApi": {
+              "id": "YOUR_OPENAI_CREDENTIAL_ID",
+              "name": "OpenAi account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "jsCode": "const raw = $input.first().json;\n\nlet parsed;\ntry {\n  const text = raw?.message?.content || raw?.choices?.[0]?.message?.content || raw?.content?.[0]?.text || '';\n  parsed = typeof text === 'object' ? text : JSON.parse(text);\n} catch(e) {\n  parsed = {};\n}\n\nconst chat_id = $('Validate Telegram Input').first().json.chat_id;\nconst raw_query = $('Validate Telegram Input').first().json.raw_query;\n\nreturn [{\n  json: {\n    business_type: parsed.business_type || raw_query,\n    district: parsed.district || '',\n    city: parsed.city || '',\n    country: parsed.country || '',\n    country_code: (parsed.country_code || '').toUpperCase(),\n    search_query: parsed.search_query || raw_query,\n    chat_id: chat_id,\n    raw_query: raw_query\n  }\n}];"
+          },
+          "name": "Parse Location Data",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -1184,
+            768
+          ],
+          "id": "2c4194c5-6a55-4b6d-a15a-99b24c95ce17"
+        },
+        {
+          "parameters": {
+            "url": "==https://maps.googleapis.com/maps/api/geocode/json?address={{ encodeURIComponent(($json.district ? $json.district + ' ' : '') + $json.city + ' ' + $json.country) }}&key={{ $credentials.httpQueryAuth.queryParameters.value }}",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpQueryAuth",
+            "options": {}
+          },
+          "name": "Fetch City Geocode",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4,
+          "position": [
+            -960,
+            768
+          ],
+          "id": "45050c67-845c-4f34-b5f3-908bcb74f9ac",
+          "credentials": {
+            "httpQueryAuth": {
+              "id": "YOUR_GOOGLE_MAPS_CREDENTIAL_ID",
+              "name": "Google_Maps_Key"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "jsCode": "const geo = $input.first().json;\nconst loc = $('Parse Location Data').first().json;\n\nlet locationRestriction = null;\n\ntry {\n  const bounds = geo?.results?.[0]?.geometry?.viewport;\n  if (bounds) {\n    locationRestriction = {\n      rectangle: {\n        low:  { latitude: bounds.southwest.lat, longitude: bounds.southwest.lng },\n        high: { latitude: bounds.northeast.lat, longitude: bounds.northeast.lng }\n      }\n    };\n  }\n} catch(e) {}\n\nreturn [{\n  json: {\n    search_query: loc.search_query,\n    business_type: loc.business_type,\n    district: loc.district,\n    city: loc.city,\n    country: loc.country,\n    country_code: loc.country_code,\n    chat_id: loc.chat_id,\n    locationRestriction: locationRestriction\n  }\n}];"
+          },
+          "name": "Build Geocode Bounding Box",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -736,
+            768
+          ],
+          "id": "f7ac9adc-7731-4063-b2fa-cd8381d58211"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://places.googleapis.com/v1/places:searchText",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpQueryAuth",
+            "sendHeaders": true,
+            "headerParameters": {
+              "parameters": [
+                {
+                  "name": "X-Goog-FieldMask",
+                  "value": "places.displayName,places.formattedAddress,places.websiteUri,places.nationalPhoneNumber,places.rating,places.userRatingCount,places.id,places.addressComponents"
+                },
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                }
+              ]
+            },
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\n  \"textQuery\": \"{{ $json.search_query }}\",\n  \"maxResultCount\": 20{{ $json.locationRestriction ? ',\\n  \"locationRestriction\": ' + JSON.stringify($json.locationRestriction) : '' }}\n}",
+            "options": {}
+          },
+          "name": "Search Google Maps Places",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4,
+          "position": [
+            -512,
+            768
+          ],
+          "id": "e2e953ca-3219-4220-b64f-4579f68b27b2",
+          "credentials": {
+            "httpQueryAuth": {
+              "id": "YOUR_GOOGLE_MAPS_CREDENTIAL_ID",
+              "name": "Google_Maps_Key"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "fieldToSplitOut": "places",
+            "options": {}
+          },
+          "name": "Split Places Results",
+          "type": "n8n-nodes-base.splitOut",
+          "typeVersion": 1,
+          "position": [
+            -288,
+            768
+          ],
+          "id": "7ee1284d-4bed-4418-84c1-a383a1988efa"
+        },
+        {
+          "parameters": {
+            "compare": "selectedFields",
+            "fieldsToCompare": "displayName.text, formattedAddress",
+            "options": {}
+          },
+          "name": "Deduplicate By Address",
+          "type": "n8n-nodes-base.removeDuplicates",
+          "typeVersion": 2,
+          "position": [
+            160,
+            448
+          ],
+          "id": "cf46c853-9669-4d3e-913e-b4e5aec0a71c"
+        },
+        {
+          "parameters": {
+            "assignments": {
+              "assignments": [
+                {
+                  "id": "aa7394a6-ba5f-4bff-a262-3e99278867bc",
+                  "name": "company_key",
+                  "value": "={{ $json.id }}",
+                  "type": "string"
+                },
+                {
+                  "id": "023e320b-e810-46d0-a98a-b44134db7144",
+                  "name": "company_name",
+                  "value": "={{ $json.displayName.text }}",
+                  "type": "string"
+                },
+                {
+                  "id": "145a5a83-7236-415d-9004-5ce592928f49",
+                  "name": "website",
+                  "value": "={{ $json.websiteUri ? $json.websiteUri.split('?')[0] : null }}",
+                  "type": "string"
+                },
+                {
+                  "id": "40925054-bcad-4f55-8696-dd9768aab4b9",
+                  "name": "phone",
+                  "value": "={{ $json.nationalPhoneNumber || null }}",
+                  "type": "string"
+                },
+                {
+                  "id": "2e618f08-2ec0-4f1d-b1ba-bcdd92a94240",
+                  "name": "address",
+                  "value": "={{ $json.formattedAddress || null }}",
+                  "type": "string"
+                },
+                {
+                  "id": "daa21299-f9ed-44ec-91e2-83df10557ffe",
+                  "name": "google_rating",
+                  "value": "={{ $json.rating || null }}",
+                  "type": "number"
+                },
+                {
+                  "id": "d8cc6604-1ca5-496c-a146-d97e2f5759da",
+                  "name": "review_count",
+                  "value": "={{ $json.userRatingCount || null }}",
+                  "type": "number"
+                },
+                {
+                  "id": "aa00ae09-b2fe-4298-b73b-63f901677ecf",
+                  "name": "place_id",
+                  "value": "={{ $json.id || null }}",
+                  "type": "string"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "name": "Set Company Fields",
+          "type": "n8n-nodes-base.set",
+          "typeVersion": 3.4,
+          "position": [
+            384,
+            448
+          ],
+          "id": "05815540-e9ab-4a29-a2bb-a3f1b00463a7"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://google.serper.dev/search",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "q",
+                  "value": "={{ $json.company_name + ' ' + ($json.address || '').split(',').slice(-2).join(',') + ' email contact' }}"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "name": "Query Serper for Email",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            1280,
+            80
+          ],
+          "id": "b347df4f-b62e-4151-a9b9-72b22df13bdb",
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_SERPER_CREDENTIAL_ID",
+              "name": "Serper_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const data = $input.item.json;\nconst key = $('Set Company Fields').item.json;\n\n// Extract the company's own domain from its website, using a regex instead of\n// the URL constructor — n8n's Code node sandbox does not reliably expose the\n// global URL class, which silently made every domain check fail before.\nfunction extractDomain(urlString) {\n  if (!urlString) return null;\n  const match = urlString.match(/^(?:https?:\\/\\/)?(?:www\\.)?([^\\/?#]+)/i);\n  return match ? match[1].toLowerCase() : null;\n}\n\nlet companyDomain = null;\nif (key.website && key.website !== 'Not found') {\n  companyDomain = extractDomain(key.website);\n}\n\nconst PERSONAL_EMAIL_PROVIDERS = ['gmail.com', 'yahoo.com', 'yahoo.co.uk', 'hotmail.com', 'outlook.com', 'icloud.com'];\n\nlet email = null;\nconst emailRegex = /[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}/g;\n\nconst organic = data.organic || [];\nfor (const item of organic) {\n  const text = (item.snippet || '') + ' ' + (item.title || '');\n  const candidates = text.match(emailRegex) || [];\n\n  for (const candidate of candidates) {\n    const emailDomain = candidate.split('@')[1]?.toLowerCase();\n    const isOwnDomain = companyDomain && emailDomain === companyDomain;\n    const isPersonalProvider = PERSONAL_EMAIL_PROVIDERS.includes(emailDomain);\n    const noDomainToValidate = !companyDomain;\n\n    if (isOwnDomain || isPersonalProvider || noDomainToValidate) {\n      email = candidate;\n      break;\n    }\n  }\n  if (email) break;\n}\n\nreturn {\n  company_key: key.company_key,\n  serper_email: email,\n  serper_email_found: !!email,\n};"
+          },
+          "name": "Parse Serper Email",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1504,
+            80
+          ],
+          "id": "b686c2fd-d750-43d5-8712-40e1628017d1"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://google.serper.dev/search",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "q",
+                  "value": "={{ '\"' + $('Set Company Fields').item.json.company_name + '\" site:linkedin.com/company' }}"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "name": "Query Serper for LinkedIn",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            1504,
+            944
+          ],
+          "id": "e2fa4ec8-1617-4c72-88d7-b24fce05dcb3",
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_SERPER_CREDENTIAL_ID",
+              "name": "Serper_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const data = $input.item.json;\nconst key = $('Set Company Fields').item.json;\n\n// Accept a LinkedIn company page ONLY if the result title actually\n// relates to this business. A /company/ path alone is not enough —\n// Serper sometimes returns an unrelated company page (often on a\n// country subdomain like id.linkedin.com, ie.linkedin.com) that still\n// matches the path pattern. Seen live: MIU HAIR wrongly linked to\n// \"mmg-artists\", Tokyo Hair wrongly linked to \"forja-works\".\nconst top = data.organic?.[0] || {};\nconst link = top.link || '';\nconst title = (top.title || '').toLowerCase();\n\nconst isCompanyPage = link.includes('linkedin.com/company/');\n\nconst GENERIC_WORDS = ['hair', 'hairdressing', 'hairdressers', 'salon', 'the', 'and', 'ltd', 'inmobiliaria', 'agency', 'real', 'estate'];\nconst nameTokens = (key.company_name || '')\n  .toLowerCase()\n  .replace(/[^a-z0-9\\s]/g, '')\n  .split(/\\s+/)\n  .filter(t => t.length >= 3 && !GENERIC_WORDS.includes(t));\n\nconst hasNameMatch = nameTokens.some(t => title.includes(t));\n\nconst linkedin = (isCompanyPage && hasNameMatch) ? link : null;\n\nreturn {\n  company_key: key.company_key,\n  linkedin: linkedin\n};"
+          },
+          "name": "Parse LinkedIn Data",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1728,
+            944
+          ],
+          "id": "a05ce531-1a1c-47db-b443-d1056f27ebf8"
+        },
+        {
+          "parameters": {
+            "mode": "combine",
+            "fieldsToMatchString": "company_key",
+            "options": {}
+          },
+          "name": "Combine Serper Data",
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            1728,
+            224
+          ],
+          "id": "fe773a2c-8e0b-483e-a01f-e613b8d972eb"
+        },
+        {
+          "parameters": {
+            "mode": "combine",
+            "fieldsToMatchString": "company_key",
+            "options": {}
+          },
+          "name": "Combine Data with Keys",
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            1952,
+            608
+          ],
+          "id": "03f0c51c-1a7b-4f85-bef7-f76aefac575f"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 3
+              },
+              "conditions": [
+                {
+                  "id": "a246d013-cd9a-40a4-93e2-06dce5f786bf",
+                  "leftValue": "={{ $json.serper_email_found }}",
+                  "rightValue": true,
+                  "operator": {
+                    "type": "boolean",
+                    "operation": "true",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "options": {}
+          },
+          "name": "Check Email Found",
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            2176,
+            608
+          ],
+          "id": "b835e7fa-13e9-4543-803e-062986d06ed6"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://api.firecrawl.dev/v1/scrape",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\n  \"url\": \"{{ $json.website?.replace(/\\/$/, '') + '/contact' }}\",\n  \"formats\": [\"markdown\"],\n  \"onlyMainContent\": true,\n  \"timeout\": 15000\n}",
+            "options": {}
+          },
+          "name": "Fetch Firecrawl Contact",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4,
+          "position": [
+            2400,
+            464
+          ],
+          "id": "2c2c9f3e-eb49-481d-8586-55b22644d5fb",
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_FIRECRAWL_CREDENTIAL_ID",
+              "name": "Firecrawl_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://api.firecrawl.dev/v1/scrape",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\n  \"url\": \"{{ $json.website?.replace(/\\/$/, '') + '/about' }}\",\n  \"formats\": [\"markdown\"],\n  \"onlyMainContent\": true,\n  \"timeout\": 15000\n}",
+            "options": {}
+          },
+          "name": "Fetch Firecrawl About",
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4,
+          "position": [
+            2624,
+            464
+          ],
+          "id": "e795e3e1-6618-42ca-8d74-d277b4cf0807",
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_FIRECRAWL_CREDENTIAL_ID",
+              "name": "Firecrawl_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const contact_data = $('Fetch Firecrawl Contact').item?.json;\nconst about_data   = $('Fetch Firecrawl About').item?.json;\nconst keys         = $('Combine Data with Keys').item.json;\n\nconst emailRegex = /[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}/g;\nlet email = null;\nlet source = 'not_found';\n\nconst contact_text = contact_data?.data?.markdown || '';\nconst contact_match = contact_text.match(emailRegex);\nif (contact_match) {\n  email = contact_match[0];\n  source = 'firecrawl_contact';\n}\n\nif (!email) {\n  const about_text = about_data?.data?.markdown || '';\n  const about_match = about_text.match(emailRegex);\n  if (about_match) {\n    email = about_match[0];\n    source = 'firecrawl_about';\n  }\n}\n\nreturn {\n  ...keys,\n  email: email,\n  email_source: source\n};"
+          },
+          "name": "Extract Email from Firecrawl",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            2848,
+            464
+          ],
+          "id": "e6875800-6bc9-4fd4-af3a-de23c41f2624"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const item = $input.item.json;\n\n// Determine email source\nlet email_source = item.email_source || null;\nif (!email_source) {\n  email_source = item.serper_email_found ? 'serper_snippet' : 'not_found';\n}\n\nconst email = item.email || item.serper_email || null;\nif (email && !email_source) email_source = 'serper_snippet';\n\nreturn {\n  company_name:  item.company_name,\n  website:       item.website || null,\n  email:         email,\n  phone:         item.phone || null,\n  linkedin:      item.linkedin || null,\n  address:       item.address || null,\n  google_rating: item.google_rating || null,\n  review_count:  item.review_count  || null,\n  place_id:      item.place_id      || null,\n  email_source:  email_source,\n  chat_id:       item.chat_id || $('Validate Telegram Input').first().json.chat_id\n};"
+          },
+          "name": "Build Lead Information",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            3296,
+            608
+          ],
+          "id": "150c5a61-c247-473b-9a4a-aaac2b610ac0"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const d = $input.item.json;\nlet score = 0;\nconst reasons = [];\n\nif (d.email) {\n  const isPersonal = /gmail|yahoo|hotmail|outlook\\.com/.test(d.email);\n  score += isPersonal ? 20 : 40;\n  reasons.push(isPersonal ? 'personal email (+20)' : 'corporate email (+40)');\n}\nif (d.linkedin) { score += 20; reasons.push('linkedin (+20)'); }\nif (d.website)  { score += 20; reasons.push('website (+20)'); }\nif (d.phone)    { score += 10; reasons.push('phone (+10)'); }\nif (d.google_rating && d.google_rating >= 4.0) { score += 10; reasons.push('rating ≥4.0 (+10)'); }\n\nlet lead_tier;\nif      (score >= 75) lead_tier = 'HOT';\nelse if (score >= 55) lead_tier = 'WARM';\nelse if (score >= 30) lead_tier = 'LUKEWARM';\nelse                  lead_tier = 'COLD';\n\nreturn {\n  ...d,\n  lead_score:      score,\n  lead_tier:       lead_tier,\n  score_breakdown: reasons.join(', ')\n};"
+          },
+          "name": "Score Lead Quality",
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            4192,
+            608
+          ],
+          "id": "666e508f-2eb7-4f17-a414-d6b5eac4e38b"
+        },
+        {
+          "parameters": {
+            "tableId": "leads",
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "company_name",
+                  "fieldValue": "={{ $json.company_name }}"
+                },
+                {
+                  "fieldId": "website",
+                  "fieldValue": "={{ $json.website }}"
+                },
+                {
+                  "fieldId": "email",
+                  "fieldValue": "={{ $json.email }}"
+                },
+                {
+                  "fieldId": "phone",
+                  "fieldValue": "={{ $json.phone }}"
+                },
+                {
+                  "fieldId": "linkedin",
+                  "fieldValue": "={{ $json.linkedin }}"
+                },
+                {
+                  "fieldId": "address",
+                  "fieldValue": "={{ $json.address }}"
+                },
+                {
+                  "fieldId": "lead_score",
+                  "fieldValue": "={{ $json.lead_score }}"
+                },
+                {
+                  "fieldId": "lead_tier",
+                  "fieldValue": "={{ $json.lead_tier }}"
+                },
+                {
+                  "fieldId": "source",
+                  "fieldValue": "={{ $json.email_source }}"
+                },
+                {
+                  "fieldId": "status",
+                  "fieldValue": "discovered"
+                },
+                {
+                  "fieldId": "place_id",
+                  "fieldValue": "={{ $json.place_id }}"
+                },
+                {
+                  "fieldId": "chain_signal",
+                  "fieldValue": "={{ $json.chain_signal }}"
+                },
+                {
+                  "fieldId": "chain_signal_reason",
+                  "fieldValue": "={{ $json.chain_signal_reason }}"
+                },
+                {
+                  "fieldId": "contact_signal",
+                  "fieldValue": "={{ $json.contact_signal }}"
+                },
+                {
+                  "fieldId": "contact_signal_reason",
+                  "fieldValue": "={{ $json.contact_signal_reason }}"
+                }
+              ]
+            }
+          },
+          "name": "Insert Lead to Supabase",
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            4640,
+            352
+          ],
+          "id": "d36bee3c-e5ba-4b95-969e-e1d8dbd4a0e9",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Validate Telegram Input').first().json.chat_id }}",
+            "text": "=🔥 HOT LEAD FOUND!\n\n🏢 {{ $json.company_name }}\n🌐 {{ $json.website || 'no website' }}\n📧 {{ $json.email }}\n📞 {{ $json.phone || '–' }}\n⭐ Google: {{ $json.google_rating || '–' }} ({{ $json.review_count || 0 }} reviews)\n📊 Score: {{ $json.lead_score }}/100 · {{ $json.lead_tier }}{{ $json.signal_alert_block }}\n🔗 {{ $json.linkedin || 'no linkedin' }}\n\nSupabase ID: {{ $json.supabase_id }}",
+            "replyMarkup": "inlineKeyboard",
+            "inlineKeyboard": {
+              "rows": [
+                {
+                  "row": {
+                    "buttons": [
+                      {
+                        "text": "🔍 Research",
+                        "additionalFields": {
+                          "callback_data": "={{ 'research_' + $json.supabase_id }}"
+                        }
+                      },
+                      {
+                        "text": "⏭ Skip",
+                        "additionalFields": {
+                          "callback_data": "={{ 'skip_' + $json.supabase_id }}"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "additionalFields": {}
+          },
+          "name": "Send Hot Alert on Telegram",
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            5312,
+            512
+          ],
+          "id": "769cf716-662e-450a-8557-4ff4cae69195",
+          "webhookId": "9b3a157a-3099-4446-98b3-3e573e91a55f",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Validate Telegram Input').first().json.chat_id }}",
+            "text": "={{ $json.is_duplicate ? '🔄 Duplicate detected — skipped.' : '⏭️ Below threshold — skipped.' }}\n\n🏢 {{ $json.company_name_raw }}\n📊 Score: {{ $json.lead_score }}/100 · {{ $json.lead_tier }}\n📧 {{ $json.email }}\n\n{{ $json.is_duplicate ? 'Lead already exists in Supabase.' : 'Score did not reach HOT threshold (≥75).' }}",
+            "additionalFields": {}
+          },
+          "name": "Log Skipped Leads on Telegram",
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            5312,
+            704
+          ],
+          "id": "bfe05c1a-1560-4d29-8cd7-9090417e16b8",
+          "webhookId": "19d365b3-d470-42e0-83de-7bbd3d4bcad4",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const supabaseResult = $input.item.json;\nconst loopItem = $('Batch Process Leads').item.json;\n\nconst is_duplicate = !!supabaseResult.error;\n\nreturn {\n  ...loopItem,\n  is_hot: loopItem.lead_tier === 'HOT' && !!loopItem.email,\n  is_duplicate: is_duplicate,\n  supabase_id: supabaseResult.id || null,\n  company_name_raw: loopItem.company_name\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            4864,
+            352
+          ],
+          "id": "8a72860e-4de5-4f15-bf13-f452b0e525e9",
+          "name": "Process Supabase Results"
+        },
+        {
+          "parameters": {
+            "rules": {
+              "values": [
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "77a06cf1-cabb-4f45-8575-6e4690658566",
+                        "leftValue": "={{ $json.is_duplicate }}",
+                        "rightValue": "",
+                        "operator": {
+                          "type": "boolean",
+                          "operation": "true",
+                          "singleValue": true
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "DUPLICATE"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "f6aa683a-bc17-4213-a1b2-f5479e92676a",
+                        "leftValue": "={{ $json.is_hot }}",
+                        "rightValue": "",
+                        "operator": {
+                          "type": "boolean",
+                          "operation": "true",
+                          "singleValue": true
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "HOT"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "432205df-b68d-4515-8808-cc2c21a57c3b",
+                        "leftValue": "={{ $json.is_hot }}",
+                        "rightValue": "",
+                        "operator": {
+                          "type": "boolean",
+                          "operation": "false",
+                          "singleValue": true
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "SKIP"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.switch",
+          "typeVersion": 3.4,
+          "position": [
+            5088,
+            336
+          ],
+          "id": "234b86b4-14de-4a41-8e26-2bcc461e518f",
+          "name": "Route by Score"
+        },
+        {
+          "parameters": {
+            "rules": {
+              "values": [
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "leftValue": "={{ $json.update_type }}",
+                        "rightValue": "callback",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals"
+                        },
+                        "id": "f078d496-0d18-44bb-89e5-daf1c7c20a38"
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "callback"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "9e1c41f6-3858-454b-a38b-f45bcb396bd5",
+                        "leftValue": "={{ $json.update_type }}",
+                        "rightValue": "message",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "message"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.switch",
+          "typeVersion": 3.4,
+          "position": [
+            -1712,
+            96
+          ],
+          "id": "38fd7603-fc5f-46c9-aca0-ea846f6011ce",
+          "name": "Route by Telegram Type"
+        },
+        {
+          "parameters": {
+            "jsCode": "const data = $json;\n\nreturn {\n  action: data.action,\n  lead_id: data.lead_id,\n  chat_id: data.chat_id,\n  message_id: data.message_id,\n  callback_query_id: data.callback_id\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -1472,
+            -192
+          ],
+          "id": "a9bfb268-d7ca-4f52-b6ad-98496fed7aa3",
+          "name": "Parse Telegram Callback"
+        },
+        {
+          "parameters": {
+            "rules": {
+              "values": [
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "leftValue": "={{ $json.action }}",
+                        "rightValue": "research",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals"
+                        },
+                        "id": "b213c213-019d-4314-81c9-16546b46e8b7"
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "RESEARCH"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "eb754c06-1f80-44db-958a-f0c54fe2968c",
+                        "leftValue": "={{ $json.action }}",
+                        "rightValue": "skip",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "SKIP"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "0bac1c47-a67e-49cc-b8ec-6886eddbbff7",
+                        "leftValue": "={{ $json.action }}",
+                        "rightValue": "approve",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "APPROVE"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "363c41ab-93b9-4c3a-ab69-6dde7e95914d",
+                        "leftValue": "={{ $json.action }}",
+                        "rightValue": "reject",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "REJECT"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "2fb90541-daf6-4706-ad64-b94b0ba97e6d",
+                        "leftValue": "={{ $json.action }}",
+                        "rightValue": "send",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "SEND"
+                },
+                {
+                  "conditions": {
+                    "options": {
+                      "caseSensitive": true,
+                      "leftValue": "",
+                      "typeValidation": "strict",
+                      "version": 3
+                    },
+                    "conditions": [
+                      {
+                        "id": "ad328785-017e-4ab9-9e2c-eb8f9e5e049c",
+                        "leftValue": "={{ $json.action }}",
+                        "rightValue": "discard",
+                        "operator": {
+                          "type": "string",
+                          "operation": "equals",
+                          "name": "filter.operator.equals"
+                        }
+                      }
+                    ],
+                    "combinator": "and"
+                  },
+                  "renameOutput": true,
+                  "outputKey": "DISCARD"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.switch",
+          "typeVersion": 3.4,
+          "position": [
+            -1184,
+            -256
+          ],
+          "id": "956d4eb7-695c-479b-b9b9-522024fe1033",
+          "name": "Determine Next Action"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $json.chat_id }}",
+            "text": " ⏭️ Lead skipped.",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            -960,
+            -320
+          ],
+          "id": "7ad2dc56-34b1-4e4d-acd2-b71c6b7cbdc0",
+          "name": "Send Skip Message on Telegram",
+          "webhookId": "aa8ff0af-2f55-4be6-ae30-ec75815508ee",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "get",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "keyValue": "={{ $json.lead_id }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -960,
+            -912
+          ],
+          "id": "ad443274-cf59-4c48-aef0-22043344b3cb",
+          "name": "Retrieve Lead Data",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "options": {}
+          },
+          "type": "n8n-nodes-base.splitInBatches",
+          "typeVersion": 3,
+          "position": [
+            4416,
+            608
+          ],
+          "id": "60c9c30a-9c49-475e-8556-a47336a64cb6",
+          "name": "Batch Process Leads"
+        },
+        {
+          "parameters": {
+            "workflowId": {
+              "__rl": true,
+              "value": "YOUR_WORKFLOW_ID",
+              "mode": "list",
+              "cachedResultUrl": "/workflow/YOUR_WORKFLOW_ID",
+              "cachedResultName": "NeolithAi - Lead Generation - Agent 2_v2"
+            },
+            "workflowInputs": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "lead_id": "={{ $json.id }}",
+                "website": "={{ $json.website }}",
+                "company_name": "={{ $json.company_name }}",
+                "email": "={{ $json.email }}",
+                "chat_id": "={{ String($('Parse Telegram Callback').item.json.chat_id) }}",
+                "place_id": "={{ $json.place_id }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "lead_id",
+                  "displayName": "lead_id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "website",
+                  "displayName": "website",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "company_name",
+                  "displayName": "company_name",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "email",
+                  "displayName": "email",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "chat_id",
+                  "displayName": "chat_id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "place_id",
+                  "displayName": "place_id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string",
+                  "removed": false
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": true
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.executeWorkflow",
+          "typeVersion": 1.3,
+          "position": [
+            -736,
+            -512
+          ],
+          "id": "624b0248-5632-47a8-baf0-134a8fc52b70",
+          "name": "Execute Workflow Agent 2"
+        },
+        {
+          "parameters": {
+            "operation": "get",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "keyValue": "={{ $json.lead_id }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -960,
+            -240
+          ],
+          "id": "6f311fb0-f8db-4ef4-8796-c73200fa6ac9",
+          "name": "Retrieve Lead Research",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "getAll",
+            "tableId": "research",
+            "returnAll": true,
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "lead_id",
+                  "condition": "eq",
+                  "keyValue": "={{ $('Determine Next Action').item.json.lead_id }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -736,
+            -240
+          ],
+          "id": "70a391e3-b73c-44d7-86e4-46c4c48f13d5",
+          "name": "Retrieve Research Data",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "jsCode": "// Run Once for All Items.\n// Get Research from Supabase can return multiple rows for the same lead_id\n// if Agent 2 was re-run for testing — this node collapses them down to\n// exactly one: the most recently analyzed record.\nconst lead = $('Retrieve Lead Research').first().json;\nconst researchRows = $('Retrieve Research Data').all().map(i => i.json);\nconst routeAction = $('Determine Next Action').first().json;\n\nif (researchRows.length === 0) {\n  throw new Error('No research record found for lead_id: ' + routeAction.lead_id);\n}\n\nconst research = researchRows.reduce((latest, row) =>\n  new Date(row.analyzed_at) > new Date(latest.analyzed_at) ? row : latest\n);\n\nreturn [{\n  json: {\n    lead_id:           routeAction.lead_id,\n    research_id:       research.id,\n    chat_id:           String(routeAction.chat_id),\n    company_name:      lead.company_name || '',\n    website:           lead.website || '',\n    email:             lead.email || '',\n    content:           research.content || '',\n    pain_points:       research.pain_points || '',\n    automation_gaps:   research.automation_gaps || '',\n    review_patterns:   research.review_patterns || '',\n    social_signals:    research.social_signals || '',\n    google_rating:     research.google_rating != null ? Number(research.google_rating) : null,\n    review_count:      research.review_count != null ? Number(research.review_count) : null,\n    site_confidence:   research.site_confidence || '',\n    review_confidence: research.review_confidence || ''\n  }\n}];"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -288,
+            -240
+          ],
+          "id": "9141f436-ea3a-4969-a295-946c385c7cc0",
+          "name": "Prepare Workflow Input 3"
+        },
+        {
+          "parameters": {
+            "workflowId": {
+              "__rl": true,
+              "value": "YOUR_WORKFLOW_ID",
+              "mode": "list",
+              "cachedResultUrl": "/workflow/YOUR_WORKFLOW_ID",
+              "cachedResultName": "NeolithAi - Lead Generation - Agent 3"
+            },
+            "workflowInputs": {
+              "mappingMode": "defineBelow",
+              "value": {
+                "google_rating": "={{ $json.google_rating }}",
+                "review_count": "={{ $json.review_count }}",
+                "lead_id": "={{ $json.lead_id }}",
+                "research_id": "={{ $json.research_id }}",
+                "chat_id": "={{ $json.chat_id }}",
+                "company_name": "={{ $json.company_name }}",
+                "website": "={{ $json.website }}",
+                "email": "={{ $json.email }}",
+                "content": "={{ $json.content }}",
+                "pain_points": "={{ $json.pain_points }}",
+                "automation_gaps": "={{ $json.automation_gaps }}",
+                "review_patterns": "={{ $json.review_patterns }}",
+                "social_signals": "={{ $json.social_signals }}",
+                "site_confidence": "={{ $json.site_confidence }}",
+                "review_confidence": "={{ $json.review_confidence }}"
+              },
+              "matchingColumns": [],
+              "schema": [
+                {
+                  "id": "lead_id",
+                  "displayName": "lead_id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "research_id",
+                  "displayName": "research_id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "chat_id",
+                  "displayName": "chat_id",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "company_name",
+                  "displayName": "company_name",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "website",
+                  "displayName": "website",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "email",
+                  "displayName": "email",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "content",
+                  "displayName": "content",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "pain_points",
+                  "displayName": "pain_points",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "automation_gaps",
+                  "displayName": "automation_gaps",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "review_patterns",
+                  "displayName": "review_patterns",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "social_signals",
+                  "displayName": "social_signals",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "google_rating",
+                  "displayName": "google_rating",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "number"
+                },
+                {
+                  "id": "review_count",
+                  "displayName": "review_count",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "number"
+                },
+                {
+                  "id": "site_confidence",
+                  "displayName": "site_confidence",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                },
+                {
+                  "id": "review_confidence",
+                  "displayName": "review_confidence",
+                  "required": false,
+                  "defaultMatch": false,
+                  "display": true,
+                  "canBeUsedToMatch": true,
+                  "type": "string"
+                }
+              ],
+              "attemptToConvertTypes": false,
+              "convertFieldsToString": true
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.executeWorkflow",
+          "typeVersion": 1.3,
+          "position": [
+            -64,
+            -240
+          ],
+          "id": "f65464d5-3ea2-455d-a3af-dd4c2184b2e5",
+          "name": "Execute Workflow Agent 3"
+        },
+        {
+          "parameters": {
+            "operation": "update",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "condition": "eq",
+                  "keyValue": "={{ $json.lead_id }}"
+                }
+              ]
+            },
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "status",
+                  "fieldValue": "rejected"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -960,
+            -48
+          ],
+          "id": "f5c9404b-b7eb-475e-903a-54851c2dbcd9",
+          "name": "Mark Lead as Rejected",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Determine Next Action').item.json.chat_id }}",
+            "text": "❌ Lead declined and marked as rejected in the database.",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            -736,
+            -48
+          ],
+          "id": "ecfceedc-12f7-412d-ab77-9958d90ca2b7",
+          "name": "Send Rejection Message",
+          "webhookId": "7429e767-4cc6-45e1-987f-5ad593110e69",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "update",
+            "tableId": "proposals",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "condition": "eq",
+                  "keyValue": "={{ $json.lead_id }}"
+                }
+              ]
+            },
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "status",
+                  "fieldValue": "discarded"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -960,
+            144
+          ],
+          "id": "f76b71af-8c56-4a01-a5f4-6cbc4391dd53",
+          "name": "Discard Proposal",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Determine Next Action').item.json.chat_id }}",
+            "text": "🗑️ Proposal discarded.",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            -736,
+            144
+          ],
+          "id": "aec9d637-1bb5-491f-b7c9-de2016357cce",
+          "name": "Send Discard Message",
+          "webhookId": "d50ee4f0-56c7-4d88-a797-204435c0b532",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "get",
+            "tableId": "proposals",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "keyValue": "={{ $json.lead_id }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -960,
+            -528
+          ],
+          "id": "4e5e3ebc-8c72-4f43-9f1d-419568f50df1",
+          "name": "Retrieve Proposal Data",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "get",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "keyValue": "={{ $json.lead_id }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -736,
+            -528
+          ],
+          "id": "89064366-35ce-4f5d-b934-fbc29e06e91a",
+          "name": "Fetch Lead Email",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "// Get Proposal from Supabase and Get Lead Email do not pass through input\n// fields, so we read from each node explicitly by name — same pattern\n// used throughout Agents 2 and 3.\nconst proposal = $('Retrieve Proposal Data').item.json;\nconst lead = $('Fetch Lead Email').item.json;\nconst routeAction = $('Determine Next Action').item.json;\n\n// kp_text was stored as \"Subject: <subject>\\n\\n<body>\" — split it back apart.\nconst kpText = proposal.kp_text || '';\nconst subjectMatch = kpText.match(/^Subject:\\s*(.+)/);\nconst subject = subjectMatch ? subjectMatch[1].trim() : `Proposal for ${lead.company_name}`;\nconst body = kpText.replace(/^Subject:.*\\n\\n/, '').trim();\n\nif (!lead.email || lead.email === 'Not found') {\n  throw new Error('No valid email found for lead_id: ' + proposal.lead_id);\n}\n\nreturn {\n  proposal_id:  routeAction.lead_id,\n  lead_id:      proposal.lead_id,\n  chat_id:      routeAction.chat_id,\n  company_name: lead.company_name,\n  email:        lead.email,\n  subject:      subject,\n  body:         body\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -512,
+            -528
+          ],
+          "id": "6ac56b4b-0890-4edf-990a-b0667872fa5e",
+          "name": "Build Gmail Draft"
+        },
+        {
+          "parameters": {
+            "resource": "draft",
+            "subject": "={{ $json.subject }}",
+            "message": "={{ $json.body }}",
+            "options": {
+              "sendTo": "={{ $json.email }}"
+            }
+          },
+          "type": "n8n-nodes-base.gmail",
+          "typeVersion": 2.2,
+          "position": [
+            -288,
+            -528
+          ],
+          "id": "6d1160e3-6816-45b7-91d7-247b32504031",
+          "name": "Send Gmail Draft",
+          "webhookId": "88e163ef-1267-4159-b069-a8725919aea3",
+          "credentials": {
+            "gmailOAuth2": {
+              "id": "YOUR_GMAIL_CREDENTIAL_ID",
+              "name": "Gmail account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "operation": "update",
+            "tableId": "proposals",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "condition": "eq",
+                  "keyValue": "={{ $('Build Gmail Draft').item.json.proposal_id }}"
+                }
+              ]
+            },
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "status",
+                  "fieldValue": "sent"
+                },
+                {
+                  "fieldId": "gmail_draft_id",
+                  "fieldValue": "={{ $json.message.id }}"
+                },
+                {
+                  "fieldId": "sent_at",
+                  "fieldValue": "={{ $now.toISO() }}"
+                },
+                {
+                  "fieldId": "approved_at",
+                  "fieldValue": "={{ $now.toISO() }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -64,
+            -432
+          ],
+          "id": "df621711-f38c-4c11-ac83-8823cb2994c6",
+          "name": "Mark Proposal as Sent",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Build Gmail Draft').item.json.chat_id }}",
+            "text": "=✅ Draft created in Gmail for {{ $('Build Gmail Draft').item.json.company_name }}. Review and send when ready.",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            160,
+            -432
+          ],
+          "id": "04cae490-2f9b-4731-a684-b3ef7e8453f6",
+          "name": "Send Sent Confirmation",
+          "webhookId": "8453e211-acc9-4c38-9976-4c59f66207d2",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          }
+        },
+        {
+          "parameters": {},
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            3072,
+            608
+          ],
+          "id": "41228ff9-d959-4836-afb0-4ef6c9521b04",
+          "name": "Append Firecrawl Results"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "// Chain / franchise detection — Tier 1 (free heuristics only).\n// Runs BEFORE Lead Scoring. Adds two new fields — chain_signal and\n// chain_signal_reason — WITHOUT touching lead_score itself. This keeps\n// \"popularity\" and \"chain probability\" as two independent dimensions,\n// per the decision to not blend them into one additive formula.\n//\n// Tier 2 (paid Serper verification search, e.g. \"[name] chain OR group OR\n// owned by\") is a SEPARATE later node that should only fire when\n// chain_signal === 'suspected' and email/URL checks came back clean —\n// that's where Dishoom/Duck & Waffle-style cases (clean-looking own domain,\n// no numeric email, no group keyword in path) get caught. Not built yet.\n\nconst data = $json;\n\n// --- Tier-0: known chain/group corporate email domains ---\n// Cheap catch for repeat offenders we've already identified manually.\n// This list is NOT meant to be exhaustive or to scale on its own —\n// generalizable detection lives in checks 2-4 below.\nconst KNOWN_CHAIN_DOMAINS = [\n  'greeneking.co.uk',\n  'ivycollection.com',\n  'samba-brands.com',\n  'caledonianheritable.co.uk',\n  'carlowriegroup.com'\n];\n\n// Generic words stripped out before comparing company name tokens to a domain,\n// so e.g. \"hotel\" or \"group\" in a name doesn't itself trigger a false overlap.\nconst STOPWORDS = [\n  'the', 'and', 'bar', 'pub', 'cafe', 'grill', 'house', 'kitchen',\n  'restaurant', 'hotel', 'inn', 'group', 'company', 'ltd', 'limited',\n  'llc', 'llp', 'co'\n];\n\nfunction extractEmailDomain(email) {\n  const match = (email || '').match(/@([^\\s@]+)$/);\n  return match ? match[1].toLowerCase() : null;\n}\n\nfunction extractUrlParts(url) {\n  if (!url || url === 'Not found') return { domain: null, path: '' };\n  // Regex-based extraction — new URL() is unreliable in n8n's Code node sandbox\n  // (silently returns null via catch), so we never use it for domain parsing.\n  const match = url.match(/^(?:https?:\\/\\/)?(?:www\\.)?([^\\/?#]+)([^?#]*)/i);\n  if (!match) return { domain: null, path: '' };\n  return { domain: match[1].toLowerCase(), path: (match[2] || '').toLowerCase() };\n}\n\nfunction getNameTokens(name) {\n  if (!name || name === 'Not found') return [];\n  return name.toLowerCase()\n    .replace(/[^a-z0-9\\s]/g, ' ')\n    .split(/\\s+/)\n    .filter(t => t.length >= 3 && !STOPWORDS.includes(t));\n}\n\nconst reasons = [];\nlet strongSignal = false;\nlet weakSignalCount = 0;\n\n// --- Check 1: known chain email domain (Tier-0, strong) ---\nconst emailDomain = extractEmailDomain(data.email);\nif (emailDomain && KNOWN_CHAIN_DOMAINS.some(d => emailDomain === d || emailDomain.endsWith('.' + d))) {\n  strongSignal = true;\n  reasons.push(`email domain \"${emailDomain}\" matches known chain domain list`);\n}\n\n// --- Check 2: numeric local-part in email (strong, generalizable) ---\n// Pattern like \"1234@greeneking.co.uk\" — a near-universal branch-numbering\n// signal for franchise/chain systems, independent of which domain it is.\nif (data.email && data.email !== 'Not found' && /^\\d+@/.test(data.email.trim())) {\n  strongSignal = true;\n  reasons.push('email local-part is purely numeric (branch code pattern)');\n}\n\n// --- Check 3: URL path suggests a subpage of a broader group/hotel domain (weak) ---\nconst CHAIN_PATH_KEYWORDS = [\n  'hotel', 'hotels', 'collection', 'group', 'brands', 'resort', 'resorts',\n  'townhouse', 'venues', 'locations', 'restaurants', 'pubs', 'inns', 'estates'\n];\nconst { domain, path } = extractUrlParts(data.website);\nconst pathSegments = path.split('/').filter(Boolean);\nconst hasChainKeyword = CHAIN_PATH_KEYWORDS.some(kw => path.includes(kw));\nconst isDeepPath = pathSegments.length >= 3;\n\nif (domain && (hasChainKeyword || isDeepPath)) {\n  weakSignalCount++;\n  const why = [];\n  if (hasChainKeyword) why.push('path contains a group/hotel/chain keyword');\n  if (isDeepPath) why.push(`path is ${pathSegments.length} segments deep`);\n  reasons.push(`website URL looks like a subpage of a broader domain (${why.join('; ')})`);\n}\n\n// --- Check 4: company name shares no tokens with its own domain (weak) ---\nif (domain) {\n  const nameTokens = getNameTokens(data.company_name);\n  const normalizedDomain = domain.replace(/[^a-z0-9]/g, '');\n  const hasOverlap = nameTokens.some(t => normalizedDomain.includes(t));\n  if (nameTokens.length > 0 && !hasOverlap) {\n    weakSignalCount++;\n    reasons.push(`company name \"${data.company_name}\" shares no tokens with its own domain \"${domain}\"`);\n  }\n}\n\n// --- Combine into a single categorical signal ---\n// - Any strong signal alone => confirmed\n// - Two weak signals together => confirmed (compounding)\n// - One weak signal alone => suspected (escalate to review, don't auto-reject)\n// - Nothing triggered => none\nlet chainSignal = 'none';\nif (strongSignal || weakSignalCount >= 2) {\n  chainSignal = 'confirmed';\n} else if (weakSignalCount === 1) {\n  chainSignal = 'suspected';\n}\n\ndata.chain_signal = chainSignal;\ndata.chain_signal_reason = reasons.length > 0 ? reasons.join('; ') : 'no chain indicators found';\n\nreturn data;"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            3520,
+            608
+          ],
+          "id": "5686a338-39ed-4c0b-a70e-8cf3e0a7f06c",
+          "name": "Detect Franchise Chains"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "// Contact Domain Check — Category 2 fix (contact-extraction bug).\n// Runs after Assemble Lead, alongside Chain Detection Check (order between the\n// two doesn't matter — both read the same input fields and write independent\n// output fields). Does NOT touch lead_score — same principle as chain_signal:\n// flag for human review, don't auto-filter or auto-correct score, until the\n// signal has been validated on real, unseen data via a regression test.\n\nconst data = $json;\n\n// Same personal-provider regex as Lead Scoring — intentionally NOT expanded or\n// improved here, to avoid ending up with two diverging definitions of\n// \"personal email\" in the system. If the list ever needs to grow, update both\n// places together in the same session.\nconst PERSONAL_PROVIDER_REGEX = /gmail|yahoo|hotmail|outlook\\.com/;\n\nfunction extractDomain(url) {\n  if (!url || url === 'Not found') return null;\n  // Regex-based extraction — new URL() is unreliable in n8n's Code node\n  // sandbox (silently returns null via catch), so never used for domain parsing.\n  const match = url.match(/^(?:https?:\\/\\/)?(?:www\\.)?([^\\/?#]+)/i);\n  return match ? match[1].toLowerCase() : null;\n}\n\nfunction extractEmailDomain(email) {\n  const match = (email || '').match(/@([^\\s@]+)$/);\n  return match ? match[1].toLowerCase() : null;\n}\n\n// Suffix-based comparison so subdomains count as a match\n// (e.g. booking.societyedinburgh.com vs societyedinburgh.com).\n// Not a full public-suffix-list implementation — good enough to catch\n// genuinely unrelated domains without pulling in an external dependency.\nfunction domainsRelated(domainA, domainB) {\n  if (!domainA || !domainB) return false;\n  if (domainA === domainB) return true;\n  return domainA.endsWith('.' + domainB) || domainB.endsWith('.' + domainA);\n}\n\nlet contactSignal;\nlet contactSignalReason;\n\nconst hasEmail = data.email && data.email !== 'Not found';\n\nif (!hasEmail) {\n  contactSignal = 'unverifiable';\n  contactSignalReason = 'no email on file';\n} else if (PERSONAL_PROVIDER_REGEX.test(data.email)) {\n  contactSignal = 'personal_provider';\n  contactSignalReason = 'email is on a personal provider (gmail/yahoo/hotmail/outlook) — not comparable to a site domain';\n} else {\n  const emailDomain = extractEmailDomain(data.email);\n  const siteDomain = extractDomain(data.website);\n\n  if (!siteDomain) {\n    contactSignal = 'unverifiable';\n    contactSignalReason = 'no website on file to compare the email domain against';\n  } else if (domainsRelated(emailDomain, siteDomain)) {\n    contactSignal = 'verified';\n    contactSignalReason = `email domain \"${emailDomain}\" matches lead's own site domain \"${siteDomain}\"`;\n  } else {\n    contactSignal = 'mismatch';\n    contactSignalReason = `email domain \"${emailDomain}\" does NOT match lead's own site domain \"${siteDomain}\" — contact may belong to a different business or third-party source`;\n  }\n}\n\ndata.contact_signal = contactSignal;\ndata.contact_signal_reason = contactSignalReason;\n\nreturn data;"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            3744,
+            608
+          ],
+          "id": "cf1d309c-ef21-4d68-b8ba-4f6154e06b13",
+          "name": "Verify Contact Domain"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "// Builds a single pre-formatted text block (signal_alert_block) combining\n// contact_signal and chain_signal into one Telegram-ready string.\n// IMPORTANT: this value gets appended directly to the END of the Score line\n// in the Telegram template (not placed on its own template line) — that's\n// what makes the empty-string case collapse to zero extra blank lines.\n// The leading '\\n\\n' here is what creates the blank-line separator when\n// content exists; there is deliberately no trailing newline, since the\n// template's own line break already provides the single line break before\n// the next field (LinkedIn).\n\nconst data = $json;\nconst sections = [];\n\n// Contact mismatch first — highest cost of error (wrong email recipient).\nif (data.contact_signal === 'mismatch') {\n  sections.push(`⚠️ CONTACT MISMATCH\\n   ${data.contact_signal_reason}`);\n}\n\n// Chain signal second — lower cost of error (a few minutes of manual review).\nif (data.chain_signal === 'confirmed' || data.chain_signal === 'suspected') {\n  sections.push(`🧩 CHAIN SIGNAL: ${data.chain_signal}\\n   ${data.chain_signal_reason}`);\n}\n\ndata.signal_alert_block = sections.length > 0 ? '\\n\\n' + sections.join('\\n\\n') : '';\n\nreturn data;"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            3968,
+            608
+          ],
+          "id": "95893949-71fd-4509-82f8-f9c6f6e855e9",
+          "name": "Build Alert Notification"
+        },
+        {
+          "parameters": {
+            "operation": "getAll",
+            "tableId": "leads",
+            "returnAll": true
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            608,
+            864
+          ],
+          "id": "eb502cac-6f8e-4fe3-861b-f8760143c95c",
+          "name": "Fetch Known Place IDs",
+          "executeOnce": true,
+          "retryOnFail": true,
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "// Compare this item's Google place_id against every place_id already\n// stored in Supabase (any previous run, any city/niche). Placed right\n// after Prepare Keys — BEFORE Serper/Firecrawl — so we never burn API\n// credits re-enriching a business we've already processed.\n//\n// If the lookup came back empty/failed, treat as \"not known\" — the\n// existing unique index on Supabase Insert stays as the safety net,\n// so a lookup hiccup here can never silently block a genuinely new lead.\n\nconst knownIds = new Set(\n  $('Fetch Known Place IDs').all()\n    .map(item => item.json.place_id)\n    .filter(Boolean)\n);\n\nconst myPlaceId = $json.place_id;\n\nreturn {\n  ...$json,\n  already_known: !!(myPlaceId && knownIds.has(myPlaceId))\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            880,
+            1264
+          ],
+          "id": "88296b55-f2f0-46d8-ba2a-8ef083cee38c",
+          "name": "Verify Known Place IDs"
+        },
+        {
+          "parameters": {
+            "mode": "chooseBranch"
+          },
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            608,
+            768
+          ],
+          "id": "9334b818-1a9c-4501-9fad-614deddb2b48",
+          "name": "Combine Known IDs"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 3
+              },
+              "conditions": [
+                {
+                  "id": "b41e686a-f50a-4c6c-a5f1-bdedf9227d10",
+                  "leftValue": "={{ $json.already_known }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "boolean",
+                    "operation": "true",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            1104,
+            1264
+          ],
+          "id": "ec6a192a-17f1-4055-8fc4-1073ef57fe38",
+          "name": "Check if Already Known"
+        },
+        {
+          "parameters": {
+            "jsCode": "// Runs once per search, after all \"already known\" leads from this run\n// have been filtered out. Summarizes them into a single count instead\n// of sending one Telegram message per duplicate.\n\nconst items = $input.all();\n\nreturn [{\n  json: {\n    duplicate_count: items.length,\n    duplicate_names: items.map(i => i.json.company_name).join(', ')\n  }\n}];"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1328,
+            1248
+          ],
+          "id": "4169e834-c6f8-43bc-92b1-154bd7f0bb27",
+          "name": "Count Recognized Leads"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 3
+              },
+              "conditions": [
+                {
+                  "id": "f610607b-0a14-463b-9070-7dc58d729df0",
+                  "leftValue": "={{ $json.duplicate_count }}",
+                  "rightValue": 0,
+                  "operator": {
+                    "type": "number",
+                    "operation": "gt"
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            1552,
+            1248
+          ],
+          "id": "04c079ba-6e57-4d28-b748-a52966e1d07a",
+          "name": "Check Duplicate Leads"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Validate Telegram Input').first().json.chat_id }}",
+            "text": "=🔄 Filtered {{ $json.duplicate_count }} already-known leads from this search (already in the database from a previous run).\n\n{{ $json.duplicate_names }}",
+            "additionalFields": {}
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            1776,
+            1248
+          ],
+          "id": "a82b2af1-6c02-4f6b-8a33-8c1686504d49",
+          "name": "Send Duplicate Lead Summary",
+          "webhookId": "f7f8ebc1-02ee-4fc2-8bd4-e63c4159952b",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const data = $json;\n\nfunction formatItems(raw) {\n  if (!raw) return 'Not available';\n  let parsed = raw;\n  if (typeof raw === 'string') {\n    try { parsed = JSON.parse(raw); } catch(e) { return raw; }\n  }\n  if (Array.isArray(parsed)) {\n    return parsed.map(item => {\n      if (typeof item === 'string') return `- ${item}`;\n      const text = item.point || item.opportunity || item.theme || item.pattern || '';\n      const evidence = item.evidence ? ` (Evidence: ${item.evidence})` : '';\n      return `- ${text}${evidence}`;\n    }).join('\\n');\n  }\n  return String(parsed);\n}\n\nreturn {\n  ...data,\n  pain_points:     formatItems(data.pain_points),\n  automation_gaps: formatItems(data.automation_gaps),\n  review_patterns: formatItems(data.review_patterns)\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -512,
+            -240
+          ],
+          "id": "a95ab89d-92c7-4a8f-8f1d-096dba9c1788",
+          "name": "Format Data for Agent 3"
+        },
+        {
+          "parameters": {
+            "operation": "update",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "condition": "eq",
+                  "keyValue": "={{ $('Build Gmail Draft').item.json.lead_id }}"
+                }
+              ]
+            },
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "status",
+                  "fieldValue": "sent"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            -64,
+            -624
+          ],
+          "id": "c5cdcd8b-411e-4e57-83b6-087081ad59a6",
+          "name": "Mark Lead as Sent",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "jsCode": "// A strict country filter — before Serper/Firecrawl, before scoring.\n// Checks the addressComponents (type: \"country\") of each lead against the expected\n// country from the original request. If addressComponents are missing for some reason,\n// we skip the lead instead of blindly cutting it (null is better than invalid data\n// works both ways: we don't cut it if there's uncertainty).\nconst expectedCountry = ($('Build Geocode Bounding Box').first().json.country || '').toLowerCase().trim();\nconst expectedCode = ($('Build Geocode Bounding Box').first().json.country_code || '').toLowerCase().trim();\n\nconst out = [];\n\nfor (const item of $input.all()) {\n  const components = item.json.addressComponents || [];\n  const countryComponent = components.find(c => (c.types || []).includes('country'));\n\n  if (!countryComponent) {\n    out.push(item);\n    continue;\n  }\n\n  const longName = (countryComponent.longText || '').toLowerCase().trim();\n  const shortCode = (countryComponent.shortText || '').toLowerCase().trim();\n\n  const matches =\n    (expectedCountry && longName === expectedCountry) ||\n    (expectedCode && shortCode === expectedCode);\n\n  if (matches || (!expectedCountry && !expectedCode)) {\n    out.push(item);\n  }\n}\n\nreturn out;"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            -64,
+            768
+          ],
+          "id": "3c3c88f5-4359-49b5-86bc-b6825462e794",
+          "name": "Filter by Country Code"
+        }
+      ],
+      "pinData": {
+        "When Message From Telegram": [
+          {
+            "json": {
+              "update_id": 900000001,
+              "message": {
+                "message_id": 1,
+                "from": {
+                  "id": "YOUR_TELEGRAM_CHAT_ID",
+                  "is_bot": false,
+                  "first_name": "Your",
+                  "last_name": "Name",
+                  "username": "your_username",
+                  "language_code": "en"
+                },
+                "chat": {
+                  "id": "YOUR_TELEGRAM_CHAT_ID",
+                  "first_name": "Your",
+                  "last_name": "Name",
+                  "username": "your_username",
+                  "type": "private"
+                },
+                "date": 1700000000,
+                "text": "restaurants Jordaan Amsterdam Netherlands"
+              }
+            },
+            "pairedItem": {
+              "item": 0
+            }
+          }
+        ]
+      },
+      "connections": {
+        "When Message From Telegram": {
+          "main": [
+            [
+              {
+                "node": "Validate Telegram Input",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Validate Telegram Input": {
+          "main": [
+            [
+              {
+                "node": "Route by Telegram Type",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "OpenAI Extract Location": {
+          "main": [
+            [
+              {
+                "node": "Parse Location Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Parse Location Data": {
+          "main": [
+            [
+              {
+                "node": "Fetch City Geocode",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fetch City Geocode": {
+          "main": [
+            [
+              {
+                "node": "Build Geocode Bounding Box",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Build Geocode Bounding Box": {
+          "main": [
+            [
+              {
+                "node": "Search Google Maps Places",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Search Google Maps Places": {
+          "main": [
+            [
+              {
+                "node": "Split Places Results",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Split Places Results": {
+          "main": [
+            [
+              {
+                "node": "Filter by Country Code",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Deduplicate By Address": {
+          "main": [
+            [
+              {
+                "node": "Set Company Fields",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Set Company Fields": {
+          "main": [
+            [
+              {
+                "node": "Combine Known IDs",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Query Serper for Email": {
+          "main": [
+            [
+              {
+                "node": "Parse Serper Email",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Parse Serper Email": {
+          "main": [
+            [
+              {
+                "node": "Combine Serper Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Query Serper for LinkedIn": {
+          "main": [
+            [
+              {
+                "node": "Parse LinkedIn Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Parse LinkedIn Data": {
+          "main": [
+            [
+              {
+                "node": "Combine Data with Keys",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "Combine Serper Data": {
+          "main": [
+            [
+              {
+                "node": "Combine Data with Keys",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Combine Data with Keys": {
+          "main": [
+            [
+              {
+                "node": "Check Email Found",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Check Email Found": {
+          "main": [
+            [
+              {
+                "node": "Append Firecrawl Results",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Fetch Firecrawl Contact",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fetch Firecrawl Contact": {
+          "main": [
+            [
+              {
+                "node": "Fetch Firecrawl About",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fetch Firecrawl About": {
+          "main": [
+            [
+              {
+                "node": "Extract Email from Firecrawl",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Extract Email from Firecrawl": {
+          "main": [
+            [
+              {
+                "node": "Append Firecrawl Results",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "Build Lead Information": {
+          "main": [
+            [
+              {
+                "node": "Detect Franchise Chains",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Score Lead Quality": {
+          "main": [
+            [
+              {
+                "node": "Batch Process Leads",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Insert Lead to Supabase": {
+          "main": [
+            [
+              {
+                "node": "Process Supabase Results",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Process Supabase Results": {
+          "main": [
+            [
+              {
+                "node": "Route by Score",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Route by Score": {
+          "main": [
+            [
+              {
+                "node": "Log Skipped Leads on Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Send Hot Alert on Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Log Skipped Leads on Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Route by Telegram Type": {
+          "main": [
+            [
+              {
+                "node": "Parse Telegram Callback",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "OpenAI Extract Location",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Parse Telegram Callback": {
+          "main": [
+            [
+              {
+                "node": "Determine Next Action",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Determine Next Action": {
+          "main": [
+            [
+              {
+                "node": "Retrieve Lead Data",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Send Skip Message on Telegram",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Retrieve Lead Research",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Mark Lead as Rejected",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Retrieve Proposal Data",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Discard Proposal",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Retrieve Lead Data": {
+          "main": [
+            [
+              {
+                "node": "Execute Workflow Agent 2",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Batch Process Leads": {
+          "main": [
+            [],
+            [
+              {
+                "node": "Insert Lead to Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Send Hot Alert on Telegram": {
+          "main": [
+            [
+              {
+                "node": "Batch Process Leads",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Log Skipped Leads on Telegram": {
+          "main": [
+            [
+              {
+                "node": "Batch Process Leads",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Retrieve Lead Research": {
+          "main": [
+            [
+              {
+                "node": "Retrieve Research Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Retrieve Research Data": {
+          "main": [
+            [
+              {
+                "node": "Format Data for Agent 3",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare Workflow Input 3": {
+          "main": [
+            [
+              {
+                "node": "Execute Workflow Agent 3",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Mark Lead as Rejected": {
+          "main": [
+            [
+              {
+                "node": "Send Rejection Message",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Discard Proposal": {
+          "main": [
+            [
+              {
+                "node": "Send Discard Message",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Retrieve Proposal Data": {
+          "main": [
+            [
+              {
+                "node": "Fetch Lead Email",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fetch Lead Email": {
+          "main": [
+            [
+              {
+                "node": "Build Gmail Draft",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Build Gmail Draft": {
+          "main": [
+            [
+              {
+                "node": "Send Gmail Draft",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Send Gmail Draft": {
+          "main": [
+            [
+              {
+                "node": "Mark Proposal as Sent",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Mark Lead as Sent",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Mark Proposal as Sent": {
+          "main": [
+            [
+              {
+                "node": "Send Sent Confirmation",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Append Firecrawl Results": {
+          "main": [
+            [
+              {
+                "node": "Build Lead Information",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Detect Franchise Chains": {
+          "main": [
+            [
+              {
+                "node": "Verify Contact Domain",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Verify Contact Domain": {
+          "main": [
+            [
+              {
+                "node": "Build Alert Notification",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Build Alert Notification": {
+          "main": [
+            [
+              {
+                "node": "Score Lead Quality",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Verify Known Place IDs": {
+          "main": [
+            [
+              {
+                "node": "Check if Already Known",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fetch Known Place IDs": {
+          "main": [
+            [
+              {
+                "node": "Combine Known IDs",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "Combine Known IDs": {
+          "main": [
+            [
+              {
+                "node": "Verify Known Place IDs",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Check if Already Known": {
+          "main": [
+            [
+              {
+                "node": "Count Recognized Leads",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Query Serper for LinkedIn",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Combine Serper Data",
+                "type": "main",
+                "index": 1
+              },
+              {
+                "node": "Query Serper for Email",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Count Recognized Leads": {
+          "main": [
+            [
+              {
+                "node": "Check Duplicate Leads",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Check Duplicate Leads": {
+          "main": [
+            [
+              {
+                "node": "Send Duplicate Lead Summary",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Format Data for Agent 3": {
+          "main": [
+            [
+              {
+                "node": "Prepare Workflow Input 3",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Filter by Country Code": {
+          "main": [
+            [
+              {
+                "node": "Deduplicate By Address",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Fetch Known Place IDs",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "active": true,
+      "settings": {
+        "executionOrder": "v1",
+        "binaryMode": "separate",
+        "availableInMCP": false
+      },
+      "versionId": "38f3a58c-b735-4f20-8a65-5d3b170ebb82",
+      "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "b8dc6b20db443e18892a3a7897076c0d1944dd1743dde315e88e0ce0d3ed7ca6"
+      },
+      "id": "YOUR_WORKFLOW_ID",
+      "tags": []
+    }

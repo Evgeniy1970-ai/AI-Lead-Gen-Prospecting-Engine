@@ -1,0 +1,1156 @@
+{
+      "name": "Lead Generation Suite - Agent 2 — Deep Research_v2",
+      "nodes": [
+        {
+          "parameters": {
+            "content": "## Lead Generation Suite - Agent 2 — Deep Research_v2\n\n### How it works\n\n1. Workflow is triggered by Agent 1 executing it.\n2. Initial data is fetched from various sources, including sitemaps, places, and social media.\n3. Data is validated and processed through AI analysis and custom code.\n4. Final results are merged, prepared, and inserted into a database.\n5. Lead status is updated, and details are sent for Telegram approval.\n\n### Setup steps\n\n- [ ] Ensure integration with Google Places API and Firecrawl API.\n- [ ] Configure OpenAI credentials for AI analysis nodes.\n- [ ] Set up Supabase connection details for database operations.\n- [ ] Authenticate Telegram bot for approvals.\n",
+            "width": 480,
+            "height": 896
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -800,
+            -560
+          ],
+          "id": "79251d69-d710-47e8-8612-408b4b7cadf8",
+          "name": "Sticky Note"
+        },
+        {
+          "parameters": {
+            "content": "## Workflow trigger\n\nInitiates the workflow when executed by Agent 1.",
+            "width": 240,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -240,
+            96
+          ],
+          "id": "387011e0-ae17-4078-8785-54fd353150e4",
+          "name": "Sticky Note1"
+        },
+        {
+          "parameters": {
+            "content": "## Fetch and validate sitemap\n\nFetches sitemap and validates its structure before parsing for relevant URLs.",
+            "width": 1536,
+            "height": 464,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            -16,
+            -544
+          ],
+          "id": "3f07ecfd-62b5-4609-a0f9-5329adb9ec5e",
+          "name": "Sticky Note2"
+        },
+        {
+          "parameters": {
+            "content": "## Deep web content analysis\n\nPrepares content from web scraping results and conducts AI-driven deep analysis on it.",
+            "width": 768,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            1552,
+            -560
+          ],
+          "id": "c49b30d8-c5cd-482d-a962-3d8cf1b24ae4",
+          "name": "Sticky Note3"
+        },
+        {
+          "parameters": {
+            "content": "## Fetch and analyze place details\n\nRetrieves and analyzes place details using custom code and AI.",
+            "width": 992,
+            "height": 272,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            1328,
+            32
+          ],
+          "id": "136c5af6-0d8e-4001-8d8b-d432ac670893",
+          "name": "Sticky Note4"
+        },
+        {
+          "parameters": {
+            "content": "## Search social media\n\nConducts search on Instagram and Facebook, preparing social media signals from results.",
+            "width": 416,
+            "height": 496,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            32,
+            160
+          ],
+          "id": "6c327d55-1fc9-46ed-b093-e73e93f2610f",
+          "name": "Sticky Note5"
+        },
+        {
+          "parameters": {
+            "content": "## Merge and prepare results\n\nMerges different AI and data analysis results before saving to the database.",
+            "width": 640,
+            "height": 480,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            2352,
+            -272
+          ],
+          "id": "d1b9fe95-cc25-4424-b51c-045b9fbca285",
+          "name": "Sticky Note6"
+        },
+        {
+          "parameters": {
+            "content": "## Database operations\n\nInserts the prepared research data into Supabase and updates the lead status.",
+            "width": 400,
+            "height": 304,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            3024,
+            -96
+          ],
+          "id": "ea1547c4-1b4b-41aa-994f-8dfa6286b959",
+          "name": "Sticky Note7"
+        },
+        {
+          "parameters": {
+            "content": "## Send for Telegram approval\n\nSends a notification to Telegram for the approval process post database update.",
+            "width": 240,
+            "height": 384,
+            "color": 7
+          },
+          "type": "n8n-nodes-base.stickyNote",
+          "typeVersion": 1,
+          "position": [
+            3456,
+            -176
+          ],
+          "id": "fba16efa-4c98-44ba-9dc4-3648123777cb",
+          "name": "Sticky Note8"
+        },
+        {
+          "parameters": {
+            "workflowInputs": {
+              "values": [
+                {
+                  "name": "lead_id"
+                },
+                {
+                  "name": "website"
+                },
+                {
+                  "name": "company_name"
+                },
+                {
+                  "name": "email"
+                },
+                {
+                  "name": "chat_id"
+                },
+                {
+                  "name": "place_id"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.executeWorkflowTrigger",
+          "typeVersion": 1.1,
+          "position": [
+            -192,
+            224
+          ],
+          "id": "5ed49720-9ec3-4886-a541-8923a31ba9d1",
+          "name": "Agent 1 Execution Trigger"
+        },
+        {
+          "parameters": {
+            "jsCode": "// Collect all successfully scraped pages from Merge Results\nconst items = $input.all();\nconst pages = items\n  .filter(item => item.json.success === true && item.json.data?.markdown)\n  .map(item => item.json.data.markdown);\n\n// Strip cookie-consent widget noise (CookieYes, OneTrust, Cookiebot, etc.)\n// These widgets render a large block listing every individual cookie name,\n// duration, and description before the real page content. Even when Firecrawl's\n// excludeTags removes the widget by selector, some sites use non-standard markup\n// that slips through — this is a content-pattern-based backstop that catches\n// the widget regardless of which consent platform generated it.\n// We only strip when the \"Cookie preferences...Reject All...Accept All\" shape is\n// present, so we never touch a page that legitimately mentions cookies once or twice.\nfunction stripCookieBanner(md) {\n  const bannerPattern = /Cookie preferences[\\s\\S]*?Reject All[\\s\\S]*?Accept All(?:\\n\\nPowered by[\\s\\S]*?\\))?/i;\n  return md.replace(bannerPattern, '');\n}\n\n// Strip image links and excess noise from markdown\nconst cleaned = pages.map(md =>\n  stripCookieBanner(md)\n    .replace(/!\\[.*?\\]\\(.*?\\)/g, '')      // remove image links\n    .replace(/\\n{3,}/g, '\\n\\n')           // collapse excess blank lines\n    .trim()\n);\n\nconst combinedContent = cleaned.join('\\n\\n---\\n\\n');\n\n// Lead fields are pulled explicitly from the trigger — upstream nodes strip them\nconst trigger = $('Agent 1 Execution Trigger').item.json;\n\nreturn {\n  content: combinedContent,\n  pages_scraped: pages.length,\n  pages_attempted: items.length,\n  lead_id: trigger.lead_id,\n  website: trigger.website,\n  company_name: trigger.company_name,\n  email: trigger.email,\n  chat_id: trigger.chat_id,\n  place_id: trigger.place_id\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1600,
+            -432
+          ],
+          "id": "67f0084c-a61f-455b-882f-c4d84ca05df6",
+          "name": "Prepare Pages for Analysis"
+        },
+        {
+          "parameters": {
+            "modelId": {
+              "__rl": true,
+              "value": "gpt-4o",
+              "mode": "list",
+              "cachedResultName": "GPT-4O"
+            },
+            "responses": {
+              "values": [
+                {
+                  "content": "==You are a business analyst reviewing a company's website content to identify automation opportunities for an AI automation agency (NeolithAI) that builds workflows using n8n.\n\nSTRICT RULES:\n- Base your analysis ONLY on the content provided below. Do not invent facts, numbers, or details not present in the text.\n- If the content is too sparse to identify a pain point or opportunity, return an empty array for that field rather than guessing.\n- For each pain point and automation gap, include a brief reference to what in the text supports it.\n- Automation gaps must be concrete and implementable with n8n (e.g. booking reminders, CRM sync, review requests, lead routing, document collection, follow-up sequences) — not generic marketing advice.\n- Do not reuse the same evidence for multiple pain points or automation gaps — each item must be grounded in a distinct piece of content.\n- Set \"confidence\" based strictly on how much usable content was provided: \"low\" if fewer than 2 pages or mostly boilerplate text, \"medium\" if some specific business details are present, \"high\" only if the content clearly describes services, processes, or customer interactions in detail.\n\nANALYSIS INSTRUCTIONS:\nThoroughly scan ALL sections of the content below, not just the main service descriptions. Specifically look for signals in:\n- Contact/enquiry forms (what info they collect, how leads reach them)\n- Testimonials and reviews (what services clients mention, what they value, any hints of past friction)\n- Company history and timeline (existing software/tools/partnerships mentioned — these are integration opportunities, not gaps to build from scratch)\n- Team, mission, and values sections (business scale, priorities)\n- Any numbers, client counts, or years of operation that indicate business scale\n- Signs of manual or missing processes (e.g. no visible online booking, no self-service portal, contact-only lead capture)\n\nIf you notice placeholder or broken content (e.g. counters showing \"0\", empty stats), mention this briefly in \"notes\" as a data limitation rather than treating it as a real fact.\n\nAim for 3-5 pain points and 3-5 automation gaps when the content supports it. Return fewer only if the content genuinely does not support more — never pad with generic or repetitive items.\n\nCOMPANY: {{ $json.company_name }}\nWEBSITE: {{ $json.website }}\nPAGES SCRAPED: {{ $json.pages_scraped }}\n\nSCRAPED CONTENT:\n{{ $json.content }}\n\nReturn ONLY valid JSON, with no markdown code fences and no text before or after it, in this exact format:\n{\n  \"pain_points\": [\n    {\"point\": \"...\", \"evidence\": \"brief quote or reference from the content\"}\n  ],\n  \"automation_gaps\": [\n    {\"opportunity\": \"...\", \"evidence\": \"brief quote or reference from the content\"}\n  ],\n  \"confidence\": \"high | medium | low\",\n  \"notes\": \"any caveats about data sufficiency or data quality issues (e.g. placeholder content)\"\n}"
+                }
+              ]
+            },
+            "simplify": false,
+            "builtInTools": {},
+            "options": {
+              "textFormat": {
+                "textOptions": {
+                  "type": "json_object"
+                }
+              }
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.openAi",
+          "typeVersion": 2.1,
+          "position": [
+            1824,
+            -432
+          ],
+          "id": "3ef8cf68-6909-4d29-8e75-99a2c8fd9f25",
+          "name": "OpenAI Deep Content Analysis",
+          "credentials": {
+            "openAiApi": {
+              "id": "YOUR_OPENAI_CREDENTIAL_ID",
+              "name": "OpenAi account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "jsCode": "const response = $input.first().json;\nconst analysisData = response.output?.[0]?.content?.[0]?.text;\nconst leadData = $('Prepare Pages for Analysis').first().json;\n\nreturn {\n  lead_id: leadData.lead_id,\n  website: leadData.website,\n  company_name: leadData.company_name,\n  email: leadData.email,\n  chat_id: leadData.chat_id,\n  scraped_content: leadData.content,\n  pain_points: analysisData?.pain_points || [],\n  automation_gaps: analysisData?.automation_gaps || [],\n  confidence: analysisData?.confidence || 'low',\n  notes: analysisData?.notes || ''\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            2176,
+            -432
+          ],
+          "id": "40fb490e-ac3e-4607-9480-b4cf59608e26",
+          "name": "Extract Content Analysis Result"
+        },
+        {
+          "parameters": {
+            "url": "={{ $json.website.replace(/\\/$/, '') }}/sitemap.xml",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            32,
+            -240
+          ],
+          "id": "6e0155f7-7b56-4ca8-953f-e5f016745937",
+          "name": "Retrieve Website Sitemap",
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 3
+              },
+              "conditions": [
+                {
+                  "id": "535a6d4a-9857-47c9-842f-1d338ee7ab40",
+                  "leftValue": "={{ $json.data }}",
+                  "rightValue": "<loc>",
+                  "operator": {
+                    "type": "string",
+                    "operation": "contains"
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            256,
+            -240
+          ],
+          "id": "2c44919f-4735-4e65-9f1c-63a0dcdddf0a",
+          "name": "Check Sitemap Validity"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://api.firecrawl.dev/v1/scrape",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\n  \"url\": \"{{ $('Agent 1 Execution Trigger').item.json.website }}\",\n  \"onlyMainContent\": true,\n  \"excludeTags\": [\"#cookieyes-banner\", \".cky-consent-container\", \".cky-overlay\", \"#onetrust-banner-sdk\", \"#CybotCookiebotDialog\", \".osano-cm-window\", \"#iubenda-cs-banner\"]\n}",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            928,
+            -48
+          ],
+          "id": "8f57f58d-d9b7-455d-bc45-6fcfa5845697",
+          "name": "Fallback Homepage Scrape",
+          "retryOnFail": true,
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_FIRECRAWL_CREDENTIAL_ID",
+              "name": "Firecrawl_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "mode": "runOnceForEachItem",
+            "jsCode": "const xml = $json.data || '';\n\nconst keywords = [\n  'about', 'contact', 'team', 'staff', 'menu', 'services', 'service',\n  'branch', 'branches', 'location', 'feedback', 'review', 'testimonial',\n  'sell', 'let', 'rent', 'property', 'valuation', 'price', 'pricing'\n];\n\n// Extract all <loc> entries from the sitemap\nconst locMatches = [...xml.matchAll(/<loc>(.*?)<\\/loc>/g)].map(m => m[1]);\n\n// Score relevance by counting matched keywords in the URL path\nconst scored = locMatches\n  .map(url => {\n    const lower = url.toLowerCase();\n    const matchCount = keywords.filter(kw => lower.includes(kw)).length;\n    return { url, matchCount };\n  })\n  .filter(item => item.matchCount > 0)\n  .sort((a, b) => b.matchCount - a.matchCount);\n\nconst relevantUrls = scored.slice(0, 10).map(item => item.url);\n\n// Lead fields are pulled explicitly from the trigger — HTTP Request/IF nodes strip them\nconst trigger = $('Agent 1 Execution Trigger').item.json;\n\nreturn {\n  relevant_urls: relevantUrls,\n  total_sitemap_urls: locMatches.length,\n  lead_id: trigger.lead_id,\n  website: trigger.website,\n  company_name: trigger.company_name,\n  email: trigger.email,\n  chat_id: trigger.chat_id,\n  place_id: trigger.place_id\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            480,
+            -320
+          ],
+          "id": "93568e0b-e864-439f-95c5-c7e0ac4bbfa2",
+          "name": "Parse Sitemap Data"
+        },
+        {
+          "parameters": {
+            "conditions": {
+              "options": {
+                "caseSensitive": true,
+                "leftValue": "",
+                "typeValidation": "strict",
+                "version": 3
+              },
+              "conditions": [
+                {
+                  "id": "48a67313-b966-4fea-bf8c-e76fbb572e03",
+                  "leftValue": "={{ $json.relevant_urls.length > 0 }}",
+                  "rightValue": "",
+                  "operator": {
+                    "type": "boolean",
+                    "operation": "true",
+                    "singleValue": true
+                  }
+                }
+              ],
+              "combinator": "and"
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.if",
+          "typeVersion": 2.3,
+          "position": [
+            704,
+            -320
+          ],
+          "id": "584c7ddd-f450-4460-96cc-7f4ec364d840",
+          "name": "Check for Relevant URLs"
+        },
+        {
+          "parameters": {
+            "fieldToSplitOut": "relevant_urls",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.splitOut",
+          "typeVersion": 1,
+          "position": [
+            928,
+            -336
+          ],
+          "id": "11dc398e-a25d-4d23-8edf-813da4ba2095",
+          "name": "Divide Relevant URLs"
+        },
+        {
+          "parameters": {
+            "options": {}
+          },
+          "type": "n8n-nodes-base.splitInBatches",
+          "typeVersion": 3,
+          "position": [
+            1152,
+            -336
+          ],
+          "id": "cb8e9e0f-fdc3-43c0-b619-cccfcb19ad33",
+          "name": "Batch Process URL Items"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://api.firecrawl.dev/v1/scrape",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "specifyBody": "json",
+            "jsonBody": "={\n  \"url\": \"{{ $json.relevant_urls }}\",\n  \"onlyMainContent\": true,\n  \"excludeTags\": [\"#cookieyes-banner\", \".cky-consent-container\", \".cky-overlay\", \"#onetrust-banner-sdk\", \"#CybotCookiebotDialog\", \".osano-cm-window\", \"#iubenda-cs-banner\"]\n}",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            1376,
+            -240
+          ],
+          "id": "84fe7c5f-5c8d-4897-908f-9afd22c05691",
+          "name": "Scrape Page via Firecrawl",
+          "retryOnFail": true,
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_FIRECRAWL_CREDENTIAL_ID",
+              "name": "Firecrawl_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {},
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            1376,
+            -432
+          ],
+          "id": "3c2310d7-28d9-4d6a-a6a3-1c51d75ad256",
+          "name": "Append Scrape Results"
+        },
+        {
+          "parameters": {
+            "url": "=https://places.googleapis.com/v1/places/{{ $json.place_id }}",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpQueryAuth",
+            "sendHeaders": true,
+            "headerParameters": {
+              "parameters": [
+                {
+                  "name": "X-Goog-FieldMask",
+                  "value": "rating,userRatingCount,reviews"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            1376,
+            144
+          ],
+          "id": "8c3fc6a5-878e-482d-b1a0-9d17c0c3670c",
+          "name": "Retrieve Place Information",
+          "retryOnFail": true,
+          "credentials": {
+            "httpQueryAuth": {
+              "id": "YOUR_GOOGLE_MAPS_CREDENTIAL_ID",
+              "name": "Google_Maps_Key"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "jsCode": "const place = $json;\n\n// Take up to 5 most recent reviews and format them as rating + text for GPT\nconst reviews = (place.reviews || []).slice(0, 5).map(r => {\n  const text = r.text?.text || '(no text)';\n  const rating = r.rating ?? 'unknown';\n  const when = r.relativePublishTimeDescription || '';\n  return `Rating: ${rating}/5 (${when})\\n${text}`;\n});\n\nconst reviewsBlock = reviews.length > 0\n  ? reviews.join('\\n\\n---\\n\\n')\n  : 'No reviews available.';\n\n// Lead fields are pulled explicitly from the trigger — upstream nodes strip them\nconst trigger = $('Agent 1 Execution Trigger').item.json;\n\nreturn {\n  google_rating: place.rating ?? null,\n  review_count: place.userRatingCount ?? 0,\n  reviews_block: reviewsBlock,\n  lead_id: trigger.lead_id,\n  website: trigger.website,\n  company_name: trigger.company_name,\n  email: trigger.email,\n  chat_id: trigger.chat_id,\n  place_id: trigger.place_id\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            1600,
+            144
+          ],
+          "id": "30b1c345-1ff9-4388-b434-a4cb245ba76a",
+          "name": "Prepare Place Reviews"
+        },
+        {
+          "parameters": {
+            "modelId": {
+              "__rl": true,
+              "value": "gpt-4o",
+              "mode": "list",
+              "cachedResultName": "GPT-4O"
+            },
+            "responses": {
+              "values": [
+                {
+                  "content": "=You are analyzing customer reviews for a local business to identify recurring patterns useful for a sales outreach team.\n\n### BUSINESS\nCompany: {{ $json.company_name }}\nGoogle rating: {{ $json.google_rating }} ({{ $json.review_count }} total reviews)\n\n### REVIEWS (up to 5 most recent)\n{{ $json.reviews_block }}\n\n### YOUR TASK\nIdentify recurring patterns across these reviews — NOT a summary of each review individually. Focus on:\n1. Repeated praise themes (what customers consistently value)\n2. Repeated complaint themes, if any (even in mostly positive reviews, look for subtle friction points)\n3. Anything suggesting operational gaps that automation could address (e.g. slow response times, manual booking friction, communication delays)\n\nRULES:\n- Every claim must be grounded in the actual review text provided. Quote or closely paraphrase the evidence.\n- Do NOT invent patterns not supported by the text.\n- If the reviews are too few or too generic to identify real patterns, say so honestly with confidence: \"low\".\n- Do not pad the output with generic filler.\n\nOUTPUT FORMAT (JSON only, no markdown):\n{\n  \"recurring_praise\": [\"theme with evidence\", ...],\n  \"recurring_complaints\": [\"theme with evidence, or empty array if none found\"],\n  \"automation_signals\": [\"operational gap suggested by reviews, with evidence\"],\n  \"confidence\": \"low\" | \"medium\" | \"high\",\n  \"notes\": \"honest caveat about data quality/quantity if relevant\"\n}"
+                }
+              ]
+            },
+            "simplify": false,
+            "builtInTools": {},
+            "options": {
+              "textFormat": {
+                "textOptions": {
+                  "type": "json_object"
+                }
+              }
+            }
+          },
+          "type": "@n8n/n8n-nodes-langchain.openAi",
+          "typeVersion": 2.1,
+          "position": [
+            1824,
+            144
+          ],
+          "id": "eddca15e-736f-4504-9458-e85c5b727df1",
+          "name": "OpenAI Review Pattern Analysis",
+          "credentials": {
+            "openAiApi": {
+              "id": "YOUR_OPENAI_CREDENTIAL_ID",
+              "name": "OpenAi account"
+            }
+          }
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://google.serper.dev/search",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "q",
+                  "value": "={{ '\"' + $json.company_name + '\" site:instagram.com' }}"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            80,
+            288
+          ],
+          "id": "de139463-53e0-41ec-9b09-0155d8e25e7b",
+          "name": "Instagram Search via Serper",
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_SERPER_CREDENTIAL_ID",
+              "name": "Serper_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "method": "POST",
+            "url": "https://google.serper.dev/search",
+            "authentication": "genericCredentialType",
+            "genericAuthType": "httpHeaderAuth",
+            "sendBody": true,
+            "bodyParameters": {
+              "parameters": [
+                {
+                  "name": "q",
+                  "value": "={{ '\"' + $json.company_name + '\" site:facebook.com' }}"
+                }
+              ]
+            },
+            "options": {}
+          },
+          "type": "n8n-nodes-base.httpRequest",
+          "typeVersion": 4.4,
+          "position": [
+            80,
+            480
+          ],
+          "id": "1767e6cc-608b-45be-8885-ed4afa2fe580",
+          "name": "Facebook Search via Serper",
+          "credentials": {
+            "httpHeaderAuth": {
+              "id": "YOUR_SERPER_CREDENTIAL_ID",
+              "name": "Serper_API"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "jsCode": "function safeGetNode(nodeName) {\n  try {\n    return $(nodeName).first().json;\n  } catch (e) {\n    return null;\n  }\n}\n\nconst trigger = $('Agent 1 Execution Trigger').item.json;\nconst companyName = trigger.company_name || '';\n\nconst GENERIC_WORDS = ['restaurant', 'the', 'and', 'cafe', 'bar', 'amsterdam', 'grill', 'bistro'];\nconst nameTokens = companyName\n  .toLowerCase()\n  .replace(/[^a-z0-9\\s]/g, '')\n  .split(/\\s+/)\n  .filter(t => t.length >= 3 && !GENERIC_WORDS.includes(t));\n\nconst IG_PROFILE = /^https?:\\/\\/(?:www\\.)?instagram\\.com\\/([a-zA-Z0-9_.]+)\\/?(?:\\?.*)?$/i;\nconst FB_PROFILE = /^https?:\\/\\/(?:www\\.)?facebook\\.com\\/([a-zA-Z0-9_.\\-]+)\\/?(?:\\?.*)?$/i;\nconst FB_EXCLUDED_SLUGS = ['login', 'help', 'policies', 'marketplace', 'groups', 'watch', 'sharer', 'pages', 'public'];\n\n// For single-word/dictionary names (risk of collision, like \"Roux\" → singer\n// La Roux), a positive whitelist of culinary words catches too few —\n// ordinary business posts (closing for renovations, announcements) often lack any\n// \"food\" vocabulary. A denylist is more reliable: block obvious signs of show business/\n// non-restaurant-related content, rather than requiring proof that \"it's a restaurant.\"\nconst NON_BUSINESS_RED_FLAGS = [\n  'singer', 'musician', 'artist', 'band', ' tour', 'presale', 'pre-sale',\n  'ticket', 'album', 'fan club', ' dj ', 'actress', 'actor', 'footballer',\n  'athlete', 'official artist'\n];\n\nfunction findProfile(searchResult, profileRegex, excludedSlugs = []) {\n  const items = searchResult?.organic || [];\n  for (const item of items.slice(0, 5)) {\n    const link = item.link || '';\n    const match = link.match(profileRegex);\n    if (!match) continue;\n\n    const slug = match[1].toLowerCase();\n    if (excludedSlugs.includes(slug)) continue;\n\n    const title = (item.title || '').toLowerCase();\n    const snippet = (item.snippet || '').toLowerCase();\n    const text = title + ' ' + snippet;\n\n    const hasNameMatch = nameTokens.length === 0 || nameTokens.some(t => title.includes(t) || slug.includes(t));\n    if (!hasNameMatch) continue;\n\n    if (nameTokens.length === 1) {\n      const hasRedFlag = NON_BUSINESS_RED_FLAGS.some(w => text.includes(w));\n      if (hasRedFlag) continue;\n    }\n\n    return { found: true, url: item.link, title: item.title, snippet: item.snippet };\n  }\n  return { found: false, url: null, title: null, snippet: null };\n}\n\nconst igResult = safeGetNode('Serper Instagram Search');\nconst fbResult = safeGetNode('Serper Facebook Search');\n\nconst instagram = findProfile(igResult, IG_PROFILE);\nconst facebook = findProfile(fbResult, FB_PROFILE, FB_EXCLUDED_SLUGS);\n\nreturn {\n  lead_id: trigger.lead_id,\n  website: trigger.website,\n  company_name: trigger.company_name,\n  email: trigger.email,\n  chat_id: trigger.chat_id,\n  place_id: trigger.place_id,\n  instagram,\n  facebook\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            304,
+            384
+          ],
+          "id": "9108a68e-c3ad-4c34-9336-1cf7c38508ad",
+          "name": "Organize Social Search Data"
+        },
+        {
+          "parameters": {
+            "mode": "combine",
+            "fieldsToMatchString": "lead_id",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            2400,
+            -144
+          ],
+          "id": "71870400-570e-4aff-9113-4009145ca86a",
+          "name": "Combine Analysis Results"
+        },
+        {
+          "parameters": {
+            "jsCode": "const response = $input.first().json;\nconst raw = response.output?.[0]?.content?.[0]?.text;\n\nlet data;\nif (typeof raw === 'object' && raw !== null) {\n  data = raw;\n} else if (typeof raw === 'string') {\n  try {\n    data = JSON.parse(raw.replace(/```json|```/g, '').trim());\n  } catch (e) {\n    data = {};\n  }\n} else {\n  data = {};\n}\n\n// Lead fields are pulled explicitly from the trigger — upstream nodes strip them\nconst trigger = $('Agent 1 Execution Trigger').item.json;\n\nreturn {\n  lead_id: trigger.lead_id,\n  website: trigger.website,\n  company_name: trigger.company_name,\n  email: trigger.email,\n  chat_id: trigger.chat_id,\n  place_id: trigger.place_id,\n  google_rating: $('Prepare Place Reviews').first().json.google_rating,\n  review_count: $('Prepare Place Reviews').first().json.review_count,\n  recurring_praise: data.recurring_praise || [],\n  recurring_complaints: data.recurring_complaints || [],\n  automation_signals: data.automation_signals || [],\n  review_confidence: data.confidence || 'low',\n  review_notes: data.notes || ''\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            2176,
+            144
+          ],
+          "id": "6c2ad492-fa21-4881-83fe-a4ad87b64125",
+          "name": "Extract Review Analysis Result"
+        },
+        {
+          "parameters": {
+            "mode": "combine",
+            "fieldsToMatchString": "lead_id",
+            "options": {}
+          },
+          "type": "n8n-nodes-base.merge",
+          "typeVersion": 3.2,
+          "position": [
+            2624,
+            32
+          ],
+          "id": "3acf376f-9f5e-4b8f-a95a-992a7a70e398",
+          "name": "Finalize Merged Data"
+        },
+        {
+          "parameters": {
+            "jsCode": "// Formats a single item regardless of whether GPT returned a plain string\n// or a structured object (different prompts use different key names)\nfunction formatItem(item) {\n  if (typeof item === 'string') return item;\n  if (item && typeof item === 'object') {\n    const main = item.point || item.opportunity || item.theme || item.pattern || Object.values(item)[0];\n    const evidence = item.evidence;\n    if (main && evidence && main !== evidence) {\n      return `${main} (Evidence: ${evidence})`;\n    }\n    return main ? String(main) : Object.entries(item).map(([k, v]) => `${k}: ${v}`).join(' | ');\n  }\n  return String(item);\n}\n\n// Helper: join an array of strings/objects into readable bullet text, or return a fallback if empty\nfunction joinList(arr, fallback) {\n  if (!Array.isArray(arr) || arr.length === 0) return fallback;\n  return arr.map(item => `- ${formatItem(item)}`).join('\\n');\n}\n\nconst data = $input.first().json;\n\n// pain_points: combine site-derived pain points with recurring complaints from reviews\nconst painPointsParts = [];\nif (Array.isArray(data.pain_points) && data.pain_points.length > 0) {\n  painPointsParts.push('[Site]\\n' + joinList(data.pain_points, ''));\n}\nif (Array.isArray(data.recurring_complaints) && data.recurring_complaints.length > 0) {\n  painPointsParts.push('[Reviews]\\n' + joinList(data.recurring_complaints, ''));\n}\nconst pain_points = painPointsParts.length > 0\n  ? painPointsParts.join('\\n\\n')\n  : 'No clear pain points identified from available data.';\n\n// automation_gaps: combine site-derived gaps with automation signals from reviews\nconst automationParts = [];\nif (Array.isArray(data.automation_gaps) && data.automation_gaps.length > 0) {\n  automationParts.push('[Site]\\n' + joinList(data.automation_gaps, ''));\n}\nif (Array.isArray(data.automation_signals) && data.automation_signals.length > 0) {\n  automationParts.push('[Reviews]\\n' + joinList(data.automation_signals, ''));\n}\nconst automation_gaps = automationParts.length > 0\n  ? automationParts.join('\\n\\n')\n  : 'No clear automation gaps identified from available data.';\n\n// review_patterns: recurring praise + complaints as a standalone readable block\nconst reviewPatternsParts = [];\nif (Array.isArray(data.recurring_praise) && data.recurring_praise.length > 0) {\n  reviewPatternsParts.push('Praise:\\n' + joinList(data.recurring_praise, ''));\n}\nif (Array.isArray(data.recurring_complaints) && data.recurring_complaints.length > 0) {\n  reviewPatternsParts.push('Complaints:\\n' + joinList(data.recurring_complaints, ''));\n}\nconst review_patterns = reviewPatternsParts.length > 0\n  ? reviewPatternsParts.join('\\n\\n')\n  : 'No clear review patterns identified.';\n\n// social_signals: human-readable summary of Instagram/Facebook findings\nfunction formatSocial(name, obj) {\n  if (obj?.found) {\n    return `${name}: FOUND\\nURL: ${obj.url}\\nTitle: ${obj.title}\\nSnippet: ${obj.snippet}`;\n  }\n  return `${name}: not found`;\n}\nconst social_signals = [\n  formatSocial('Instagram', data.instagram),\n  formatSocial('Facebook', data.facebook)\n].join('\\n\\n');\n\n// analysis_notes: combine caveats from both GPT analyses\nconst notesParts = [];\nif (data.notes) notesParts.push('[Site] ' + data.notes);\nif (data.review_notes) notesParts.push('[Reviews] ' + data.review_notes);\nconst analysis_notes = notesParts.length > 0 ? notesParts.join('\\n') : '';\n\nreturn {\n  lead_id: data.lead_id,\n  website: data.website,\n  company_name: data.company_name,\n  email: data.email,\n  chat_id: data.chat_id,\n  place_id: data.place_id,\n  content: data.scraped_content || '',\n  pain_points,\n  automation_gaps,\n  google_rating: data.google_rating ?? null,\n  review_count: data.review_count ?? 0,\n  review_patterns,\n  social_signals,\n  site_confidence: data.confidence || 'low',\n  review_confidence: data.review_confidence || 'low',\n  analysis_notes\n};"
+          },
+          "type": "n8n-nodes-base.code",
+          "typeVersion": 2,
+          "position": [
+            2848,
+            32
+          ],
+          "id": "f3c696bc-fe6a-45e0-80ee-f871862c30a0",
+          "name": "Create Research Record"
+        },
+        {
+          "parameters": {
+            "tableId": "research",
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "lead_id",
+                  "fieldValue": "={{ $json.lead_id }}"
+                },
+                {
+                  "fieldId": "content",
+                  "fieldValue": "={{ $json.content }}"
+                },
+                {
+                  "fieldId": "pain_points",
+                  "fieldValue": "={{ $json.pain_points }}"
+                },
+                {
+                  "fieldId": "automation_gaps",
+                  "fieldValue": "={{ $json.automation_gaps }}"
+                },
+                {
+                  "fieldId": "google_rating",
+                  "fieldValue": "={{ $json.google_rating }}"
+                },
+                {
+                  "fieldId": "review_count",
+                  "fieldValue": "={{ $json.review_count }}"
+                },
+                {
+                  "fieldId": "review_patterns",
+                  "fieldValue": "={{ $json.review_patterns }}"
+                },
+                {
+                  "fieldId": "social_signals",
+                  "fieldValue": "={{ $json.social_signals }}"
+                },
+                {
+                  "fieldId": "site_confidence",
+                  "fieldValue": "={{ $json.site_confidence }}"
+                },
+                {
+                  "fieldId": "review_confidence",
+                  "fieldValue": "={{ $json.review_confidence }}"
+                },
+                {
+                  "fieldId": "analysis_notes",
+                  "fieldValue": "={{ $json.analysis_notes }}"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            3072,
+            32
+          ],
+          "id": "a7b3b90a-3fa2-41ff-aabb-d2e73c6f7e89",
+          "name": "Insert Record into Supabase",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "chatId": "={{ $('Create Research Record').item.json.chat_id }}",
+            "text": "=📋 <b>DOSSIER READY</b>\n\n🏢 <b>{{ $('Create Research Record').item.json.company_name }}</b>\n🌐 {{ $('Create Research Record').item.json.website }}\n📧 {{ $('Create Research Record').item.json.email }}\n⭐ Google: {{ $('Create Research Record').item.json.google_rating || '—' }} ({{ $('Create Research Record').item.json.review_count || 0 }} reviews)\n\n━━━━━━━━━━━━━━━\n\n🎯 <b>PAIN POINTS</b>\n{{ $('Create Research Record').item.json.pain_points }}\n\n━━━━━━━━━━━━━━━\n\n⚙️ <b>AUTOMATION GAPS</b>\n{{ $('Create Research Record').item.json.automation_gaps }}\n\n━━━━━━━━━━━━━━━\n\n📱 <b>SOCIAL SIGNALS</b>\n{{ $('Create Research Record').item.json.social_signals }}\n\n━━━━━━━━━━━━━━━\n\n🔍 Confidence: site=<b>{{ $('Create Research Record').item.json.site_confidence }}</b>, reviews=<b>{{ $('Create Research Record').item.json.review_confidence }}</b>\n\nLead ID: <code>{{ $('Create Research Record').item.json.lead_id }}</code>",
+            "replyMarkup": "inlineKeyboard",
+            "inlineKeyboard": {
+              "rows": [
+                {
+                  "row": {
+                    "buttons": [
+                      {
+                        "text": "Approve",
+                        "additionalFields": {
+                          "callback_data": "={{ 'approve_' + $('Create Research Record').item.json.lead_id }}"
+                        }
+                      },
+                      {
+                        "text": "Decline",
+                        "additionalFields": {
+                          "callback_data": "={{ 'reject_' + $('Create Research Record').item.json.lead_id }}"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "additionalFields": {
+              "parse_mode": "HTML"
+            }
+          },
+          "type": "n8n-nodes-base.telegram",
+          "typeVersion": 1.2,
+          "position": [
+            3504,
+            32
+          ],
+          "id": "59c1791a-b320-40b6-a498-8675661ed54a",
+          "name": "Request Telegram Approval",
+          "webhookId": "7d1db1a5-aef2-457c-b73f-932de7b5cdab",
+          "retryOnFail": true,
+          "credentials": {
+            "telegramApi": {
+              "id": "YOUR_TELEGRAM_CREDENTIAL_ID",
+              "name": "Telegram_Mass_Scout"
+            }
+          },
+          "onError": "continueRegularOutput"
+        },
+        {
+          "parameters": {
+            "operation": "update",
+            "tableId": "leads",
+            "filters": {
+              "conditions": [
+                {
+                  "keyName": "id",
+                  "condition": "=eq",
+                  "keyValue": "={{ $('Create Research Record').item.json.lead_id }}"
+                }
+              ]
+            },
+            "fieldsUi": {
+              "fieldValues": [
+                {
+                  "fieldId": "status",
+                  "fieldValue": "researched"
+                }
+              ]
+            }
+          },
+          "type": "n8n-nodes-base.supabase",
+          "typeVersion": 1,
+          "position": [
+            3280,
+            32
+          ],
+          "id": "8ce3b927-5a54-41e2-a4ca-eff9b176a64d",
+          "name": "Update Lead Status in Supabase",
+          "credentials": {
+            "supabaseApi": {
+              "id": "YOUR_SUPABASE_CREDENTIAL_ID",
+              "name": "Lead Generator Suite"
+            }
+          }
+        }
+      ],
+      "pinData": {
+        "Agent 1 Execution Trigger": [
+          {
+            "json": {
+              "lead_id": "00000000-0000-0000-0000-000000000001",
+              "website": "http://www.example-restaurant.com/",
+              "company_name": "Example Restaurant",
+              "email": "info@example-restaurant.com",
+              "chat_id": "YOUR_TELEGRAM_CHAT_ID",
+              "place_id": "EXAMPLE_GOOGLE_PLACE_ID"
+            },
+            "pairedItem": {
+              "item": 0
+            }
+          }
+        ]
+      },
+      "connections": {
+        "Agent 1 Execution Trigger": {
+          "main": [
+            [
+              {
+                "node": "Retrieve Website Sitemap",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Retrieve Place Information",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Instagram Search via Serper",
+                "type": "main",
+                "index": 0
+              },
+              {
+                "node": "Facebook Search via Serper",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare Pages for Analysis": {
+          "main": [
+            [
+              {
+                "node": "OpenAI Deep Content Analysis",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "OpenAI Deep Content Analysis": {
+          "main": [
+            [
+              {
+                "node": "Extract Content Analysis Result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Retrieve Website Sitemap": {
+          "main": [
+            [
+              {
+                "node": "Check Sitemap Validity",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Check Sitemap Validity": {
+          "main": [
+            [
+              {
+                "node": "Parse Sitemap Data",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Fallback Homepage Scrape",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Parse Sitemap Data": {
+          "main": [
+            [
+              {
+                "node": "Check for Relevant URLs",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Check for Relevant URLs": {
+          "main": [
+            [
+              {
+                "node": "Divide Relevant URLs",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Fallback Homepage Scrape",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Divide Relevant URLs": {
+          "main": [
+            [
+              {
+                "node": "Batch Process URL Items",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Batch Process URL Items": {
+          "main": [
+            [
+              {
+                "node": "Append Scrape Results",
+                "type": "main",
+                "index": 0
+              }
+            ],
+            [
+              {
+                "node": "Scrape Page via Firecrawl",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Scrape Page via Firecrawl": {
+          "main": [
+            [
+              {
+                "node": "Batch Process URL Items",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Fallback Homepage Scrape": {
+          "main": [
+            [
+              {
+                "node": "Append Scrape Results",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "Append Scrape Results": {
+          "main": [
+            [
+              {
+                "node": "Prepare Pages for Analysis",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Retrieve Place Information": {
+          "main": [
+            [
+              {
+                "node": "Prepare Place Reviews",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Prepare Place Reviews": {
+          "main": [
+            [
+              {
+                "node": "OpenAI Review Pattern Analysis",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "OpenAI Review Pattern Analysis": {
+          "main": [
+            [
+              {
+                "node": "Extract Review Analysis Result",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Instagram Search via Serper": {
+          "main": [
+            [
+              {
+                "node": "Organize Social Search Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Facebook Search via Serper": {
+          "main": [
+            [
+              {
+                "node": "Organize Social Search Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Extract Content Analysis Result": {
+          "main": [
+            [
+              {
+                "node": "Combine Analysis Results",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Extract Review Analysis Result": {
+          "main": [
+            [
+              {
+                "node": "Combine Analysis Results",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "Organize Social Search Data": {
+          "main": [
+            [
+              {
+                "node": "Finalize Merged Data",
+                "type": "main",
+                "index": 1
+              }
+            ]
+          ]
+        },
+        "Combine Analysis Results": {
+          "main": [
+            [
+              {
+                "node": "Finalize Merged Data",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Finalize Merged Data": {
+          "main": [
+            [
+              {
+                "node": "Create Research Record",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Create Research Record": {
+          "main": [
+            [
+              {
+                "node": "Insert Record into Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Insert Record into Supabase": {
+          "main": [
+            [
+              {
+                "node": "Update Lead Status in Supabase",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        },
+        "Update Lead Status in Supabase": {
+          "main": [
+            [
+              {
+                "node": "Request Telegram Approval",
+                "type": "main",
+                "index": 0
+              }
+            ]
+          ]
+        }
+      },
+      "active": true,
+      "settings": {
+        "executionOrder": "v1",
+        "binaryMode": "separate",
+        "availableInMCP": false
+      },
+      "versionId": "f686ef3f-8a57-4820-95e3-01938bdb55d1",
+      "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "b8dc6b20db443e18892a3a7897076c0d1944dd1743dde315e88e0ce0d3ed7ca6"
+      },
+      "id": "YOUR_WORKFLOW_ID",
+      "tags": []
+    }
